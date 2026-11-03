@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dominique &amp; Steve · 15 mai 2027</title>
+<meta name="description" content="Dominique et Steve vous invitent à leur mariage coutumier, le 15 mai 2027 à Paris FACTORY 58, Bobigny.">
+<meta name="theme-color" content="#2a170e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dominique &amp; Steve · 15 mai 2027">
+<meta property="og:description" content="Vous êtes invités à notre mariage coutumier. Paris FACTORY 58, Bobigny.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>document.documentElement.className += " js";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cinzel:wght@400..700&family=Jost:wght@300..600&family=Pinyon+Script&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Barre du haut : initiales, menu (ordinateur) et langues ===== -->
+<header class="topbar" id="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#accueil" aria-label="Dominique &amp; Steve">D&amp;S</a>
+    <nav class="nav" aria-label="Menu">
+      <a href="#histoire" data-i18n="nav_story">Histoire</a>
+      <a href="#galerie" data-i18n="nav_gallery">Galerie</a>
+      <a href="#programme" data-i18n="nav_prog">Programme</a>
+      <a href="#lieu" data-i18n="nav_venue">Lieu</a>
+      <a href="#tenue" data-i18n="nav_dress">Tenue</a>
+      <a href="#rsvp" data-i18n="nav_rsvp">Réponse</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Langue" data-i18n-attr="aria-label:lang_label">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Ouverture : l'enveloppe ===== -->
+<div class="intro" id="intro" role="dialog" aria-label="Invitation de mariage" data-i18n-attr="aria-label:intro_label">
+  <div class="env-stage">
+    <div class="env" id="env">
+      <div class="env-shadow" aria-hidden="true"></div>
+      <div class="env-back" aria-hidden="true"></div>
+      <div class="card" aria-hidden="true">
+        <p class="card-kind" data-i18n="kind">Mariage coutumier</p>
+        <p class="card-names">Dominique &amp; Steve</p>
+        <p class="card-date">15 · 05 · 2027</p>
+      </div>
+      <svg class="env-front" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="gFront" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#9ad65f"/>
+            <stop offset="1" stop-color="#66aa38"/>
+          </linearGradient>
+        </defs>
+        <polygon points="0,0 50,54 100,0 100,100 0,100" fill="url(#gFront)" stroke="#3a7520" stroke-width="1" vector-effect="non-scaling-stroke"/>
+        <path d="M0 100 L50 54 L100 100" fill="none" stroke="#3a7520" stroke-opacity="0.5" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="flap" aria-hidden="true">
+        <svg class="flap-face flap-out" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="gFlap" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#b3e478"/>
+              <stop offset="1" stop-color="#86c44f"/>
+            </linearGradient>
+          </defs>
+          <polygon points="0,0 100,0 50,100" fill="url(#gFlap)" stroke="#3a7520" stroke-width="1" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <svg class="flap-face flap-in" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polygon points="0,100 100,100 50,0" fill="#f3e5a4" stroke="#b79a3c" stroke-width="1" vector-effect="non-scaling-stroke"/>
+        </svg>
+      </div>
+      <button type="button" class="seal" id="seal" aria-label="Briser le cachet et ouvrir l’invitation" data-i18n-attr="aria-label:seal_label"><span>D&amp;S</span></button>
+    </div>
+  </div>
+  <div class="intro-foot">
+    <p class="intro-note" data-i18n="invited">Vous êtes invités à notre mariage</p>
+    <button type="button" class="btn btn-gold" id="openBtn" data-i18n="open">Ouvrir notre invitation</button>
+  </div>
+</div>
+
+<main class="site" id="site">
+
+  <!-- ===== 1. Accueil ===== -->
+  <section class="hero" id="accueil">
+    <img class="hero-img" src="photos/hero.jpg" width="1200" height="1600" alt="Dominique et Steve" data-i18n-attr="alt:hero_alt" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="eyebrow reveal" data-i18n="kind">Mariage coutumier</p>
+      <div class="hero-spacer"></div>
+      <h1 class="names reveal" style="--d:.15s" aria-label="Dominique et Steve">
+        <span class="name">Dominique</span>
+        <span class="amp">&amp;</span>
+        <span class="name">Steve</span>
+      </h1>
+      <p class="welcome reveal" style="--d:.3s" data-i18n="welcome">Avec joie et reconnaissance, nous vous invitons à célébrer notre union, entourés de nos familles et de celles et ceux que nous aimons.</p>
+      <div class="when reveal" style="--d:.4s">
+        <p class="when-date" id="heroDate">Samedi 15 mai 2027</p>
+        <p class="when-place">Paris FACTORY 58 · Bobigny</p>
+      </div>
+      <div class="count reveal" style="--d:.5s" id="countdown" role="timer" aria-label="Compte à rebours jusqu’au mariage" data-i18n-attr="aria-label:cd_label">
+        <div><b id="cdMo">00</b><span data-i18n="cd_mo">Mois</span></div>
+        <div><b id="cdD">00</b><span data-i18n="cd_d">Jours</span></div>
+        <div><b id="cdH">00</b><span data-i18n="cd_h">Heures</span></div>
+        <div><b id="cdM">00</b><span data-i18n="cd_m">Minutes</span></div>
+        <div><b id="cdS">00</b><span data-i18n="cd_s">Secondes</span></div>
+      </div>
+      <a class="cue" href="#histoire" aria-label="Notre histoire" data-i18n-attr="aria-label:cue">
+        <svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 1l10 10L21 1"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true"></div>
+
+  <!-- ===== 2. Notre histoire ===== -->
+  <section class="section story" id="histoire">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="story_kicker">Notre histoire</p>
+      <h2 class="h2 split" data-i18n="story_title" data-split>Deux chemins, une même route</h2>
+      <p class="lead reveal" data-i18n="story_lead">Quelques moments qui nous ont menés jusqu’à ce jour.</p>
+
+      <div class="tl" id="tl">
+        <div class="tl-track" id="tlTrack" aria-hidden="true"></div>
+        <div class="tl-line" id="tlLine" aria-hidden="true"></div>
+        <ol class="tl-list">
+          <!-- Pour ajouter une date à une étape, écrivez-la dans le <p class="tl-when"> de l'étape. -->
+          <li class="tl-item reveal">
+            <span class="tl-node" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.1L22 12l-7.6 2.9L12 22l-2.4-7.1L2 12l7.6-2.9z"/></svg>
+            </span>
+            <div class="tl-body">
+              <p class="tl-when"></p>
+              <h3 class="tl-title" data-i18n="t1_title">La rencontre</h3>
+              <p class="tl-text" data-i18n="t1_text">Un regard, un sourire, et deux chemins se sont croisés. Nous ne le savions pas encore, mais tout commençait là.</p>
+            </div>
+          </li>
+          <li class="tl-item reveal">
+            <span class="tl-node" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg>
+            </span>
+            <div class="tl-body">
+              <p class="tl-when"></p>
+              <h3 class="tl-title" data-i18n="t2_title">Le premier rendez-vous</h3>
+              <p class="tl-text" data-i18n="t2_text">Les mots sont venus tout seuls, le temps a filé. Ce soir-là, nous avons compris que cette histoire avait quelque chose de rare.</p>
+            </div>
+          </li>
+          <li class="tl-item reveal">
+            <span class="tl-node" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="15.5" r="5.5"/><path d="M8 6.5 12 2.5 16 6.5 12 10Z" fill="currentColor" stroke-width="1"/></svg>
+            </span>
+            <div class="tl-body">
+              <p class="tl-when"></p>
+              <h3 class="tl-title" data-i18n="t3_title">La demande en mariage</h3>
+              <p class="tl-text" data-i18n="t3_text">Une question, un oui venu du cœur. Le début de notre plus belle promesse.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. Galerie ===== -->
+  <section class="section gallery" id="galerie">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="gal_kicker">Galerie</p>
+      <h2 class="h2 split" data-i18n="gal_title" data-split>Nos plus beaux moments</h2>
+      <p class="lead reveal" data-i18n="gal_lead">Quelques images de notre histoire.</p>
+    </div>
+    <!-- Photos : remplacez photos/gallery-1.jpg … gallery-6.jpg par les vôtres (même noms). -->
+    <div class="gal" id="gal">
+      <figure class="shot reveal"><div class="frame"><img src="photos/gallery-1.jpg" width="900" height="1125" alt="Dominique et Steve, photo 1" loading="lazy" decoding="async"></div></figure>
+      <figure class="shot reveal"><div class="frame"><img src="photos/gallery-2.jpg" width="900" height="1125" alt="Dominique et Steve, photo 2" loading="lazy" decoding="async"></div></figure>
+      <figure class="shot reveal"><div class="frame"><img src="photos/gallery-3.jpg" width="900" height="1125" alt="Dominique et Steve, photo 3" loading="lazy" decoding="async"></div></figure>
+      <figure class="shot reveal"><div class="frame"><img src="photos/gallery-4.jpg" width="900" height="1125" alt="Dominique et Steve, photo 4" loading="lazy" decoding="async"></div></figure>
+      <figure class="shot reveal"><div class="frame"><img src="photos/gallery-5.jpg" width="900" height="1125" alt="Dominique et Steve, photo 5" loading="lazy" decoding="async"></div></figure>
+      <figure class="shot reveal"><div class="frame"><img src="photos/gallery-6.jpg" width="900" height="1125" alt="Dominique et Steve, photo 6" loading="lazy" decoding="async"></div></figure>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true"></div>
+
+  <!-- ===== 4. Le programme ===== -->
+  <section class="section prog-sec" id="programme">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="prog_kicker">Le programme</p>
+      <h2 class="h2 split" data-i18n="prog_title" data-split>Le déroulé de la journée</h2>
+      <p class="lead reveal" data-i18n="prog_lead">Samedi 15 mai 2027, du premier accueil aux remerciements.</p>
+      <!-- Horaires à ajuster : modifiez les heures dans les balises <time>. -->
+      <ol class="prog">
+        <li class="prog-item reveal">
+          <time class="prog-time">13:00</time>
+          <div><h3 data-i18n="p1_t">Accueil</h3><p data-i18n="p1_d">Installation des invités, rafraîchissements et retrouvailles.</p></div>
+        </li>
+        <li class="prog-item reveal">
+          <time class="prog-time">14:00</time>
+          <div><h3 data-i18n="p2_t">Cérémonie</h3><p data-i18n="p2_d">Les familles se retrouvent pour bénir notre union selon la tradition.</p></div>
+        </li>
+        <li class="prog-item reveal">
+          <time class="prog-time">16:00</time>
+          <div><h3 data-i18n="p3_t">Photos</h3><p data-i18n="p3_d">Portraits des mariés, des familles et de tous les invités.</p></div>
+        </li>
+        <li class="prog-item reveal">
+          <time class="prog-time">17:30</time>
+          <div><h3 data-i18n="p4_t">Repas</h3><p data-i18n="p4_d">Un grand repas partagé, en musique.</p></div>
+        </li>
+        <li class="prog-item reveal">
+          <time class="prog-time">21:00</time>
+          <div><h3 data-i18n="p5_t">Remerciements</h3><p data-i18n="p5_d">Quelques mots de gratitude pour clore cette belle journée.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== 5. Le lieu ===== -->
+  <section class="section venue" id="lieu">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="venue_kicker">Le lieu</p>
+      <h2 class="h2 split" data-i18n="venue_title" data-split>Où nous retrouver</h2>
+
+      <div class="venue-grid">
+        <div class="venue-addr reveal">
+          <h3 class="place-name">Paris FACTORY 58</h3>
+          <address>12 rue de Gutenberg<br>93000 Bobigny</address>
+          <a class="btn btn-terra" href="https://www.google.com/maps/dir/?api=1&amp;destination=Paris+FACTORY+58%2C+12+rue+de+Gutenberg%2C+93000+Bobigny" target="_blank" rel="noopener" data-i18n="route_btn">Ouvrir l’itinéraire</a>
+        </div>
+
+        <div class="venue-map reveal">
+          <iframe src="https://www.google.com/maps?q=Paris+FACTORY+58%2C+12+rue+de+Gutenberg%2C+93000+Bobigny&amp;output=embed" title="Plan d’accès à Paris FACTORY 58" data-i18n-attr="title:map_title" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+
+        <div class="venue-stay reveal">
+          <h3 class="sub" data-i18n="stay_title">Se loger à proximité</h3>
+          <p data-i18n="stay_lead">Quelques pistes pour dormir près du lieu de la fête.</p>
+          <ul class="stay">
+            <li><a href="https://www.google.com/maps/search/?api=1&amp;query=h%C3%B4tels+pr%C3%A8s+de+12+rue+de+Gutenberg+93000+Bobigny" target="_blank" rel="noopener"><strong data-i18n="stay_hotel">Hôtels</strong><span data-i18n="stay_maps">Voir sur Google Maps</span></a></li>
+            <li><a href="https://www.airbnb.fr/s/Bobigny--France/homes" target="_blank" rel="noopener"><strong>Airbnb</strong><span data-i18n="stay_airbnb">Voir sur Airbnb</span></a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&amp;query=motel+pr%C3%A8s+de+12+rue+de+Gutenberg+93000+Bobigny" target="_blank" rel="noopener"><strong data-i18n="stay_motel">Motels</strong><span data-i18n="stay_maps">Voir sur Google Maps</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true"></div>
+
+  <!-- ===== 6. Tenue ===== -->
+  <section class="section dress" id="tenue">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="dress_kicker">Tenue</p>
+      <h2 class="h2 split" data-i18n="dress_title" data-split>Tenue de prestige</h2>
+      <p class="lead reveal" data-i18n="dress_lead">Nous vous invitons à porter vos plus belles tenues traditionnelles, nobles et élégantes, dans l’esprit des grandes cérémonies camerounaises et ivoiriennes.</p>
+
+      <div class="dress-cards">
+        <article class="dress-card reveal">
+          <h3 data-i18n="dress_her">Pour elles</h3>
+          <p data-i18n="dress_her_t">Kaba, boubou brodé, pagne ou toghu, avec un foulard de tête et des bijoux dorés.</p>
+        </article>
+        <article class="dress-card reveal" style="--d:.12s">
+          <h3 data-i18n="dress_him">Pour eux</h3>
+          <p data-i18n="dress_him_t">Boubou, toghu, ensemble en bazin riche ou en pagne, avec des chaussures soignées.</p>
+        </article>
+      </div>
+
+      <div class="dress-extra">
+        <div class="reveal">
+          <h3 class="sub" data-i18n="palette_title">Nos couleurs</h3>
+          <ul class="swatches">
+            <li><i style="background:#14523a"></i><span data-i18n="sw_green">Vert</span></li>
+            <li><i style="background:#f0bd2c"></i><span data-i18n="sw_gold">Jaune doré</span></li>
+            <li><i style="background:#b4512f"></i><span data-i18n="sw_terra">Terracotta</span></li>
+            <li><i style="background:#2a170e"></i><span data-i18n="sw_brown">Brun profond</span></li>
+          </ul>
+        </div>
+        <div class="reveal" style="--d:.12s">
+          <h3 class="sub" data-i18n="inspir_title">Inspirations</h3>
+          <ul class="tags">
+            <li>Toghu</li><li>Kaba</li><li>Boubou</li><li data-i18n="tag_pagne">Pagne baoulé</li><li>Bazin riche</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. Confirmer votre présence ===== -->
+  <section class="section rsvp" id="rsvp">
+    <div class="wrap rsvp-in">
+      <p class="kicker reveal" data-i18n="rsvp_kicker">Réponse</p>
+      <h2 class="h2 split" data-i18n="rsvp_title" data-split>Confirmer votre présence</h2>
+      <p class="lead reveal" data-i18n="rsvp_text">Votre présence compte énormément pour nous. Merci de nous répondre grâce à un court formulaire.</p>
+      <p class="deadline reveal"><span data-i18n="rsvp_before">Réponse souhaitée avant le</span> <strong id="deadlineDate">15 avril 2027</strong></p>
+      <!-- Le lien du formulaire et la date limite se changent en haut du fichier script.js -->
+      <a class="btn btn-terra reveal" id="rsvpBtn" href="https://forms.gle/VOTRE-LIEN" target="_blank" rel="noopener" data-i18n="rsvp_btn">Confirmer ma présence</a>
+      <p class="fine reveal" data-i18n="rsvp_note">Le formulaire s’ouvre dans un nouvel onglet.</p>
+    </div>
+  </section>
+
+  <div class="strip" aria-hidden="true"></div>
+
+  <!-- ===== 8. Pied de page ===== -->
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <h2 class="foot-title split" data-i18n="foot_thanks" data-split>Merci de faire partie de notre histoire</h2>
+      <p class="foot-mono reveal" aria-label="Dominique et Steve"><span>D&amp;S</span></p>
+      <p class="foot-hash reveal" id="hashtag">#DominiqueEtSteve2027</p>
+      <p class="foot-line reveal">15 · 05 · 2027 · Bobigny</p>
+    </div>
+  </footer>
+</main>
+
+<noscript><style>.intro{display:none}.site{opacity:1}.brand,.nav{opacity:1}</style></noscript>
+<script src="script.js" defer></script>
+</body>
+</html>
