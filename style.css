@@ -590,6 +590,16 @@ body:not(.is-open) .brand, body:not(.is-open) .nav, body:not(.is-open) .rsvp-btn
   background: var(--pat-dark), linear-gradient(180deg, rgba(42, 23, 14, 0.66), rgba(42, 23, 14, 0.84));
 }
 .pane-info .pane-in { display: flex; flex-direction: column; align-items: center; }
+.invite {
+  max-width: 34ch;
+  margin: 0 auto 16px;
+  text-align: center;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ivory);
+  text-wrap: balance;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+}
 .verse { max-width: 36ch; }
 .verse-text {
   font-family: var(--f-title);
