@@ -18,23 +18,23 @@
 </head>
 <body>
 
-<!-- ===== Barre du haut : initiales, menu (ordinateur) et langues ===== -->
+<!-- ===== Barre du haut : langues (à gauche), initiales, menu (ordinateur) et bouton RSVP ===== -->
 <header class="topbar" id="topbar">
   <div class="topbar-in">
-    <a class="brand" href="#accueil" aria-label="Dominique &amp; Steve">D&amp;S</a>
+    <div class="lang" role="group" aria-label="Langue" data-i18n-attr="aria-label:lang_label">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+    </div>
+    <a class="brand" href="#accueil" aria-label="Dominique &amp; Steve">STEDO</a>
     <nav class="nav" aria-label="Menu">
       <a href="#histoire" data-i18n="nav_story">Histoire</a>
       <a href="#galerie" data-i18n="nav_gallery">Galerie</a>
       <a href="#programme" data-i18n="nav_prog">Programme</a>
       <a href="#lieu" data-i18n="nav_venue">Lieu</a>
       <a href="#tenue" data-i18n="nav_dress">Tenue</a>
-      <a href="#rsvp" data-i18n="nav_rsvp">Réponse</a>
     </nav>
-    <div class="lang" role="group" aria-label="Langue" data-i18n-attr="aria-label:lang_label">
-      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
-      <button type="button" data-lang="en" aria-pressed="false">EN</button>
-      <button type="button" data-lang="de" aria-pressed="false">DE</button>
-    </div>
+    <a class="rsvp-btn" href="#rsvp"><b>RSVP</b><span class="rsvp-long" data-i18n="nav_rsvp_long">Confirmer votre présence</span></a>
   </div>
 </header>
 
@@ -73,7 +73,7 @@
           <polygon points="0,100 100,100 50,0" fill="#f3e5a4" stroke="#b79a3c" stroke-width="1" vector-effect="non-scaling-stroke"/>
         </svg>
       </div>
-      <button type="button" class="seal" id="seal" aria-label="Briser le cachet et ouvrir l’invitation" data-i18n-attr="aria-label:seal_label"><span>D&amp;S</span></button>
+      <button type="button" class="seal" id="seal" aria-label="Briser le cachet et ouvrir l’invitation" data-i18n-attr="aria-label:seal_label"><span>STEDO</span></button>
     </div>
   </div>
   <div class="intro-foot">
@@ -84,33 +84,74 @@
 
 <main class="site" id="site">
 
-  <!-- ===== 1. Accueil ===== -->
+  <!-- ===== 1. Accueil : page coupée en deux ===== -->
   <section class="hero" id="accueil">
-    <img class="hero-img" src="photos/hero.jpg" width="1200" height="1600" alt="Dominique et Steve" data-i18n-attr="alt:hero_alt" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
-    <div class="hero-shade" aria-hidden="true"></div>
-    <div class="wrap hero-inner">
-      <p class="eyebrow reveal" data-i18n="kind">Mariage coutumier</p>
-      <div class="hero-spacer"></div>
-      <h1 class="names reveal" style="--d:.15s" aria-label="Dominique et Steve">
-        <span class="name">Dominique</span>
-        <span class="amp">&amp;</span>
-        <span class="name">Steve</span>
-      </h1>
-      <p class="welcome reveal" style="--d:.3s" data-i18n="welcome">Avec joie et reconnaissance, nous vous invitons à célébrer notre union, entourés de nos familles et de celles et ceux que nous aimons.</p>
-      <div class="when reveal" style="--d:.4s">
-        <p class="when-date" id="heroDate">Samedi 15 mai 2027</p>
-        <p class="when-place">Paris FACTORY 58 · Bobigny</p>
+    <!-- Photo de fond (moitié basse / droite). Pour en changer, modifiez le nom du fichier ci-dessous. -->
+    <img class="hero-bg" src="photos/gallery-1.jpg" width="900" height="1125" alt="" aria-hidden="true" decoding="async" onerror="this.style.display='none'">
+    <div class="hero-split">
+
+      <!-- Moitié 1 : photo bien visible, prénoms et alliances -->
+      <div class="pane pane-photo">
+        <img class="pane-img" src="photos/hero.jpg" width="1200" height="1600" alt="Dominique et Steve" data-i18n-attr="alt:hero_alt" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
+        <div class="pane-shade" aria-hidden="true"></div>
+        <div class="pane-in">
+          <p class="eyebrow reveal" data-i18n="kind">Mariage coutumier</p>
+          <div class="hero-spacer"></div>
+          <h1 class="names reveal" style="--d:.15s" aria-label="Dominique et Steve">
+            <span class="name">Dominique</span>
+            <span class="amp">&amp;</span>
+            <span class="name">Steve</span>
+          </h1>
+          <svg class="rings reveal" style="--d:.3s" viewBox="10 2 90 76" role="img" aria-label="Deux alliances en or, dont une ornée d’un diamant" data-i18n-attr="aria-label:rings_label">
+            <defs>
+              <linearGradient id="goldG" gradientUnits="userSpaceOnUse" x1="14" y1="30" x2="96" y2="76">
+                <stop offset="0" stop-color="#fbe49a"/>
+                <stop offset=".42" stop-color="#e3ad28"/>
+                <stop offset=".72" stop-color="#f7d56b"/>
+                <stop offset="1" stop-color="#a87510"/>
+              </linearGradient>
+              <linearGradient id="gemG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset=".55" stop-color="#d4ecf8"/>
+                <stop offset="1" stop-color="#8ec2e0"/>
+              </linearGradient>
+              <clipPath id="ringBottom"><rect x="48" y="54" width="14" height="24"/></clipPath>
+            </defs>
+            <circle cx="68" cy="52" r="21" fill="none" stroke="url(#goldG)" stroke-width="5.5"/>
+            <circle cx="42" cy="52" r="21" fill="none" stroke="url(#goldG)" stroke-width="5.5"/>
+            <circle cx="68" cy="52" r="21" fill="none" stroke="url(#goldG)" stroke-width="5.5" clip-path="url(#ringBottom)"/>
+            <polygon points="62,8 74,8 81,16 55,16" fill="url(#gemG)" stroke="#a87510" stroke-width=".8" stroke-linejoin="round"/>
+            <polygon points="55,16 81,16 68,31" fill="#a9d3ea" stroke="#a87510" stroke-width=".8" stroke-linejoin="round"/>
+            <path d="M62 8 65 16M74 8 71 16M65 16 68 31M71 16 68 31" fill="none" stroke="#ffffff" stroke-opacity=".75" stroke-width=".6"/>
+            <path class="gem-glint" d="M66 11.500l.9 2.100 2.100.9-2.100.9-.9 2.100-.9-2.100-2.100-.9 2.100-.9z" fill="#ffffff"/>
+          </svg>
+        </div>
       </div>
-      <div class="count reveal" style="--d:.5s" id="countdown" role="timer" aria-label="Compte à rebours jusqu’au mariage" data-i18n-attr="aria-label:cd_label">
-        <div><b id="cdMo">00</b><span data-i18n="cd_mo">Mois</span></div>
-        <div><b id="cdD">00</b><span data-i18n="cd_d">Jours</span></div>
-        <div><b id="cdH">00</b><span data-i18n="cd_h">Heures</span></div>
-        <div><b id="cdM">00</b><span data-i18n="cd_m">Minutes</span></div>
-        <div><b id="cdS">00</b><span data-i18n="cd_s">Secondes</span></div>
+
+      <!-- Moitié 2 : verset, date, lieu et compte à rebours sur la photo de fond -->
+      <div class="pane pane-info">
+        <div class="pane-in">
+          <blockquote class="verse reveal" style="--d:.1s">
+            <p class="verse-text" data-i18n="verse">« C’est pourquoi l’homme quittera son père et sa mère, et s’attachera à sa femme, et ils deviendront une seule chair. »</p>
+            <footer class="verse-ref" data-i18n="verse_ref">Genèse 2:24</footer>
+          </blockquote>
+          <div class="when reveal" style="--d:.25s">
+            <p class="when-date" id="heroDate">Samedi 15 mai 2027</p>
+            <p class="when-place">Paris FACTORY 58 · Bobigny</p>
+          </div>
+          <div class="count reveal" style="--d:.4s" id="countdown" role="timer" aria-label="Compte à rebours jusqu’au mariage" data-i18n-attr="aria-label:cd_label">
+            <div><b id="cdMo">00</b><span data-i18n="cd_mo">Mois</span></div>
+            <div><b id="cdD">00</b><span data-i18n="cd_d">Jours</span></div>
+            <div><b id="cdH">00</b><span data-i18n="cd_h">Heures</span></div>
+            <div><b id="cdM">00</b><span data-i18n="cd_m">Minutes</span></div>
+            <div><b id="cdS">00</b><span data-i18n="cd_s">Secondes</span></div>
+          </div>
+          <a class="cue" href="#histoire" aria-label="Notre histoire" data-i18n-attr="aria-label:cue">
+            <svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 1l10 10L21 1"/></svg>
+          </a>
+        </div>
       </div>
-      <a class="cue" href="#histoire" aria-label="Notre histoire" data-i18n-attr="aria-label:cue">
-        <svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 1l10 10L21 1"/></svg>
-      </a>
+
     </div>
   </section>
 
@@ -304,7 +345,7 @@
   <footer class="foot">
     <div class="wrap foot-in">
       <h2 class="foot-title split" data-i18n="foot_thanks" data-split>Merci de faire partie de notre histoire</h2>
-      <p class="foot-mono reveal" aria-label="Dominique et Steve"><span>D&amp;S</span></p>
+      <p class="foot-mono reveal" aria-label="Dominique et Steve"><span>STEDO</span></p>
       <p class="foot-hash reveal" id="hashtag">#DominiqueEtSteve2027</p>
       <p class="foot-line reveal">15 · 05 · 2027 · Bobigny</p>
     </div>
