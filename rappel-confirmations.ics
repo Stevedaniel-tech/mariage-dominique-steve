@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mariage Dominique et Steve//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:rappel-rsvp-20270308@mariage-dominique-steve
+DTSTAMP:20261104T200000Z
+DTSTART;VALUE=DATE:20270308
+DTEND;VALUE=DATE:20270309
+SUMMARY:Rappel : relancer les invités qui n'ont pas encore confirmé
+DESCRIPTION:La date limite de confirmation est le 15 mars 2027 (dans une semaine). Pensez à relancer les invités qui n'ont pas encore répondu au formulaire du faire-part.
+BEGIN:VALARM
+TRIGGER;VALUE=DATE-TIME:20270308T080000Z
+ACTION:DISPLAY
+DESCRIPTION:Relancer les invités en retard (date limite le 15 mars 2027)
+END:VALARM
+BEGIN:VALARM
+TRIGGER;VALUE=DATE-TIME:20270308T080000Z
+ACTION:EMAIL
+SUMMARY:Rappel : relancer les invités en retard
+DESCRIPTION:La date limite de confirmation est le 15 mars 2027. Pensez à relancer les invités qui n'ont pas encore répondu.
+ATTENDEE:mailto:mvogoo.daniels@gmail.com
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:fin-rsvp-20270315@mariage-dominique-steve
+DTSTAMP:20261104T200000Z
+DTSTART;VALUE=DATE:20270315
+DTEND;VALUE=DATE:20270316
+SUMMARY:Fin des confirmations de présence (mariage 15 mai 2027)
+DESCRIPTION:Dernier jour pour confirmer. Le formulaire se ferme automatiquement ce soir à minuit.
+END:VEVENT
+END:VCALENDAR

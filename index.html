@@ -350,7 +350,15 @@
     <div class="wrap">
       <p class="kicker reveal" data-i18n="dress_kicker">Tenue</p>
       <h2 class="h2 split" data-i18n="dress_title" data-split>Tenue de prestige</h2>
+      <p class="dress-motto reveal" data-i18n="dress_motto">Tenue traditionnelle de prestige. Élevez nos couleurs.</p>
       <p class="lead reveal" data-i18n="dress_lead">Nous vous invitons à porter vos plus belles tenues traditionnelles, nobles et élégantes, dans l’esprit des grandes cérémonies camerounaises et ivoiriennes.</p>
+
+      <div class="dress-insp reveal">
+        <h3 class="sub" data-i18n="inspir_title">Inspirations</h3>
+        <ul class="tags">
+          <li>Toghu</li><li>Kaba</li><li>Boubou</li><li data-i18n="tag_pagne">Pagne baoulé</li><li>Bazin riche</li>
+        </ul>
+      </div>
 
       <div class="dress-cards">
         <article class="dress-card reveal">
@@ -363,23 +371,6 @@
         </article>
       </div>
 
-      <div class="dress-extra">
-        <div class="reveal">
-          <h3 class="sub" data-i18n="palette_title">Nos couleurs</h3>
-          <ul class="swatches">
-            <li><i style="background:#14523a"></i><span data-i18n="sw_green">Vert</span></li>
-            <li><i style="background:#f0bd2c"></i><span data-i18n="sw_gold">Jaune doré</span></li>
-            <li><i style="background:#b4512f"></i><span data-i18n="sw_terra">Terracotta</span></li>
-            <li><i style="background:#2a170e"></i><span data-i18n="sw_brown">Brun profond</span></li>
-          </ul>
-        </div>
-        <div class="reveal" style="--d:.12s">
-          <h3 class="sub" data-i18n="inspir_title">Inspirations</h3>
-          <ul class="tags">
-            <li>Toghu</li><li>Kaba</li><li>Boubou</li><li data-i18n="tag_pagne">Pagne baoulé</li><li>Bazin riche</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -389,10 +380,52 @@
       <p class="kicker reveal" data-i18n="rsvp_kicker">Réponse</p>
       <h2 class="h2 split" data-i18n="rsvp_title" data-split>Confirmer votre présence</h2>
       <p class="lead reveal" data-i18n="rsvp_text">Votre présence compte énormément pour nous. Merci de nous répondre grâce à un court formulaire.</p>
-      <p class="deadline reveal"><span data-i18n="rsvp_before">Réponse souhaitée avant le</span> <strong id="deadlineDate">15 avril 2027</strong></p>
-      <!-- Le lien du formulaire et la date limite se changent en haut du fichier script.js -->
-      <a class="btn btn-terra reveal" id="rsvpBtn" href="https://forms.gle/VOTRE-LIEN" target="_blank" rel="noopener" data-i18n="rsvp_btn">Confirmer ma présence</a>
-      <p class="fine reveal" data-i18n="rsvp_note">Le formulaire s’ouvre dans un nouvel onglet.</p>
+      <p class="deadline reveal"><span data-i18n="rsvp_before">Réponse souhaitée avant le</span> <strong id="deadlineDate">15 mars 2027</strong></p>
+      <!-- Réglages (clé d'envoi, date limite) : en haut du fichier script.js -->
+      <p class="rsvp-closed" id="rsvpClosed" hidden data-i18n="f_closed">Les confirmations sont closes. Merci pour votre compréhension.</p>
+      <form class="rform reveal" id="rsvpForm" novalidate>
+        <p class="rtest" id="rsvpTest" hidden data-i18n="f_test">Mode test : le formulaire fonctionne, mais rien n’est enregistré ni envoyé tant que le lien Google n’est pas renseigné.</p>
+        <div class="rf">
+          <label for="fName" data-i18n="f_name">Nom et prénom</label>
+          <input id="fName" name="name" type="text" autocomplete="name" required maxlength="80" data-i18n-attr="placeholder:f_name_ph" placeholder="Ex. Marie Kouassi">
+          <small class="rerr" data-i18n="f_required">Merci de renseigner ce champ.</small>
+        </div>
+        <div class="rf">
+          <label for="fEmail" data-i18n="f_email">E-mail</label>
+          <input id="fEmail" name="email" type="email" autocomplete="email" maxlength="120" placeholder="nom@exemple.com">
+          <small class="rerr" data-i18n="f_email_err">Adresse e-mail non valide.</small>
+        </div>
+        <div class="rf">
+          <label for="fPhone" data-i18n="f_phone">Téléphone</label>
+          <input id="fPhone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="+33 6 12 34 56 78">
+        </div>
+        <fieldset class="rf rradio">
+          <legend data-i18n="f_attend">Serez-vous présent(e) ?</legend>
+          <label class="opt"><input type="radio" name="attend" value="yes" checked><span data-i18n="f_yes">Oui, avec joie</span></label>
+          <label class="opt"><input type="radio" name="attend" value="no"><span data-i18n="f_no">Non, avec regret</span></label>
+        </fieldset>
+        <div class="rf" id="rfCount">
+          <label for="fCount" data-i18n="f_count">Nombre de personnes (vous inclus)</label>
+          <select id="fCount" name="count">
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+          </select>
+        </div>
+        <div class="rf" id="rfGuests">
+          <label for="fGuests" data-i18n="f_guests">Noms des personnes qui vous accompagnent</label>
+          <textarea id="fGuests" name="guests" rows="2" maxlength="300" data-i18n-attr="placeholder:f_guests_ph" placeholder="Prénom et nom, un par ligne"></textarea>
+        </div>
+        <div class="rf">
+          <label for="fMsg" data-i18n="f_msg">Un petit mot pour les mariés (facultatif)</label>
+          <textarea id="fMsg" name="message" rows="3" maxlength="600"></textarea>
+        </div>
+        <input type="checkbox" name="botcheck" id="fBot" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+        <button class="btn btn-terra" type="submit" id="fSend" data-i18n="f_send">Envoyer ma réponse</button>
+        <p class="rstatus" id="rStatus" role="status" aria-live="polite"></p>
+      </form>
+      <div class="rthanks" id="rThanks" role="status" hidden>
+        <p class="rthanks-title" data-i18n="f_ok_title">Merci !</p>
+        <p id="rThanksText"></p>
+      </div>
     </div>
   </section>
 

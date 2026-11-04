@@ -11,10 +11,11 @@
     eventDate: "2027-05-15T00:00:00+02:00",
     // Jour du mariage, affiché en toutes lettres selon la langue.
     eventDay: "2027-05-15T12:00:00+02:00",
-    // Lien de votre formulaire de réponse (Google Forms, Tally, etc.).
-    rsvpUrl: "https://forms.gle/VOTRE-LIEN",
-    // Date limite de réponse.
-    rsvpDeadline: "2027-04-15T12:00:00+02:00",
+    // Adresse de votre Google Sheets (Apps Script) : voir le guide. Les réponses y sont inscrites et vous recevez un e-mail.
+    // Tant que ce texte reste "VOTRE-LIEN-GOOGLE", le formulaire est en MODE TEST (rien n'est enregistré ni envoyé).
+    sheetUrl: "VOTRE-LIEN-GOOGLE",
+    // Date limite de réponse : 2 mois avant le mariage (fin de journée, heure de Paris).
+    rsvpDeadline: "2027-03-15T23:59:00+01:00",
     // Votre hashtag.
     hashtag: "#DominiqueEtSteve2027"
   };
@@ -58,14 +59,36 @@
       route_btn: "Ouvrir l’itinéraire", map_title: "Plan d’accès à Paris FACTORY 58",
       stay_title: "Se loger à proximité", stay_lead: "Quelques pistes pour dormir près du lieu de la fête.",
       stay_hotel: "Hôtels", stay_motel: "Motels", stay_maps: "Voir sur Google Maps", stay_airbnb: "Voir sur Airbnb",
-      dress_kicker: "Tenue", dress_title: "Tenue de prestige",
+      dress_motto: "Tenue traditionnelle de prestige. Élevez nos couleurs.", dress_kicker: "Tenue", dress_title: "Tenue de prestige",
       dress_lead: "Nous vous invitons à porter vos plus belles tenues traditionnelles, nobles et élégantes, dans l’esprit des grandes cérémonies camerounaises et ivoiriennes.",
       dress_her: "Pour elles", dress_her_t: "Kaba, boubou brodé, pagne ou toghu, avec un foulard de tête et des bijoux dorés.",
       dress_him: "Pour eux", dress_him_t: "Boubou, toghu, ensemble en bazin riche ou en pagne, avec des chaussures soignées.",
       palette_title: "Nos couleurs", sw_green: "Vert", sw_gold: "Jaune doré", sw_terra: "Terracotta", sw_brown: "Brun profond",
       inspir_title: "Inspirations", tag_pagne: "Pagne baoulé",
       rsvp_kicker: "Réponse", rsvp_title: "Confirmer votre présence",
-      rsvp_text: "Votre présence compte énormément pour nous. Merci de nous répondre grâce à un court formulaire.",
+      rsvp_text: "Votre présence compte énormément pour nous. Merci de nous répondre grâce à ce court formulaire.",
+      f_name: "Nom et prénom",
+      f_name_ph: "Ex. Marie Kouassi",
+      f_required: "Merci de renseigner ce champ.",
+      f_email: "E-mail",
+      f_email_err: "Adresse e-mail non valide.",
+      f_phone: "Téléphone",
+      f_attend: "Serez-vous présent(e) ?",
+      f_yes: "Oui, avec joie",
+      f_no: "Non, avec regret",
+      f_count: "Nombre de personnes (vous inclus)",
+      f_guests: "Noms des personnes qui vous accompagnent",
+      f_guests_ph: "Prénom et nom, un par ligne",
+      f_msg: "Un petit mot pour les mariés (facultatif)",
+      f_send: "Envoyer ma réponse",
+      f_sending: "Envoi en cours…",
+      f_err: "Désolé, l’envoi a échoué. Merci de réessayer dans un instant.",
+      f_ok_title: "Merci !",
+      f_ok_yes: "Votre présence est bien enregistrée. Nous avons hâte de célébrer avec vous le 15 mai 2027.",
+      f_ok_no: "Votre réponse est bien enregistrée. Vous nous manquerez, merci de nous avoir prévenus.",
+      f_closed: "Les confirmations sont closes. Merci pour votre compréhension.",
+      f_test: "Mode test : le formulaire fonctionne, mais rien n’est enregistré ni envoyé tant que le lien Google n’est pas renseigné.",
+      f_test_done: "(Mode test : rien n’a été enregistré.)",
       rsvp_before: "Réponse souhaitée avant le", rsvp_btn: "Confirmer ma présence",
       rsvp_note: "Le formulaire s’ouvre dans un nouvel onglet.",
       foot_thanks: "Merci de faire partie de notre histoire"
@@ -105,14 +128,36 @@
       route_btn: "Open directions", map_title: "Map to Paris FACTORY 58",
       stay_title: "Where to stay nearby", stay_lead: "A few ideas for staying close to the venue.",
       stay_hotel: "Hotels", stay_motel: "Motels", stay_maps: "View on Google Maps", stay_airbnb: "View on Airbnb",
-      dress_kicker: "Attire", dress_title: "Prestige attire",
+      dress_motto: "Traditional attire of prestige. Elevate our colours.", dress_kicker: "Attire", dress_title: "Prestige attire",
       dress_lead: "We invite you to wear your finest traditional outfits, noble and elegant, in the spirit of great Cameroonian and Ivorian ceremonies.",
       dress_her: "For her", dress_her_t: "Kaba, embroidered boubou, pagne (wax print) or toghu, with a head wrap and golden jewellery.",
       dress_him: "For him", dress_him_t: "Boubou, toghu, or a set in bazin riche or pagne, with polished shoes.",
       palette_title: "Our colours", sw_green: "Green", sw_gold: "Golden yellow", sw_terra: "Terracotta", sw_brown: "Deep brown",
       inspir_title: "Inspirations", tag_pagne: "Baoulé pagne",
       rsvp_kicker: "RSVP", rsvp_title: "Confirm your attendance",
-      rsvp_text: "Your presence means the world to us. Please reply using a short form.",
+      rsvp_text: "Your presence means the world to us. Please reply using this short form.",
+      f_name: "Full name",
+      f_name_ph: "E.g. Marie Kouassi",
+      f_required: "Please fill in this field.",
+      f_email: "E-mail",
+      f_email_err: "Invalid e-mail address.",
+      f_phone: "Phone",
+      f_attend: "Will you attend?",
+      f_yes: "Yes, with joy",
+      f_no: "No, with regret",
+      f_count: "Number of people (including you)",
+      f_guests: "Names of the people joining you",
+      f_guests_ph: "First and last name, one per line",
+      f_msg: "A little word for the couple (optional)",
+      f_send: "Send my reply",
+      f_sending: "Sending…",
+      f_err: "Sorry, sending failed. Please try again in a moment.",
+      f_ok_title: "Thank you!",
+      f_ok_yes: "Your attendance is recorded. We can’t wait to celebrate with you on 15 May 2027.",
+      f_ok_no: "Your reply is recorded. You will be missed, thank you for letting us know.",
+      f_closed: "Confirmations are now closed. Thank you for your understanding.",
+      f_test: "Test mode: the form works, but nothing is saved or sent until the Google link is set.",
+      f_test_done: "(Test mode: nothing was saved.)",
       rsvp_before: "Kindly reply by", rsvp_btn: "Confirm my attendance",
       rsvp_note: "The form opens in a new tab.",
       foot_thanks: "Thank you for being part of our story"
@@ -152,14 +197,36 @@
       route_btn: "Route öffnen", map_title: "Anfahrtsplan zu Paris FACTORY 58",
       stay_title: "Unterkunft in der Nähe", stay_lead: "Ein paar Ideen für eine Übernachtung in der Nähe des Veranstaltungsortes.",
       stay_hotel: "Hotels", stay_motel: "Motels", stay_maps: "Auf Google Maps ansehen", stay_airbnb: "Auf Airbnb ansehen",
-      dress_kicker: "Kleidung", dress_title: "Festliche Tracht",
+      dress_motto: "Festliche traditionelle Tracht. Erhebt unsere Farben.", dress_kicker: "Kleidung", dress_title: "Festliche Tracht",
       dress_lead: "Wir laden euch ein, eure schönsten traditionellen Gewänder zu tragen, edel und elegant, im Geist der großen kamerunischen und ivorischen Zeremonien.",
       dress_her: "Für Damen", dress_her_t: "Kaba, bestickter Boubou, Pagne oder Toghu, dazu ein Kopftuch und goldener Schmuck.",
       dress_him: "Für Herren", dress_him_t: "Boubou, Toghu oder ein Ensemble aus Bazin Riche oder Pagne, dazu gepflegte Schuhe.",
       palette_title: "Unsere Farben", sw_green: "Grün", sw_gold: "Goldgelb", sw_terra: "Terrakotta", sw_brown: "Tiefbraun",
       inspir_title: "Inspirationen", tag_pagne: "Baoulé-Pagne",
       rsvp_kicker: "Zusage", rsvp_title: "Bitte um eure Zusage",
-      rsvp_text: "Eure Anwesenheit bedeutet uns sehr viel. Bitte antwortet uns über ein kurzes Formular.",
+      rsvp_text: "Eure Anwesenheit bedeutet uns sehr viel. Bitte antwortet uns über dieses kurze Formular.",
+      f_name: "Vor- und Nachname",
+      f_name_ph: "z. B. Marie Kouassi",
+      f_required: "Bitte dieses Feld ausfüllen.",
+      f_email: "E-Mail",
+      f_email_err: "Ungültige E-Mail-Adresse.",
+      f_phone: "Telefon",
+      f_attend: "Werdet ihr dabei sein?",
+      f_yes: "Ja, sehr gern",
+      f_no: "Nein, leider nicht",
+      f_count: "Anzahl der Personen (inklusive euch)",
+      f_guests: "Namen eurer Begleitung",
+      f_guests_ph: "Vor- und Nachname, einer pro Zeile",
+      f_msg: "Ein paar Worte an das Brautpaar (optional)",
+      f_send: "Antwort senden",
+      f_sending: "Wird gesendet…",
+      f_err: "Leider ist das Senden fehlgeschlagen. Bitte versucht es gleich noch einmal.",
+      f_ok_title: "Danke!",
+      f_ok_yes: "Eure Zusage ist registriert. Wir freuen uns darauf, am 15. Mai 2027 mit euch zu feiern.",
+      f_ok_no: "Eure Antwort ist registriert. Ihr werdet uns fehlen – danke für die Nachricht.",
+      f_closed: "Die Zusagen sind geschlossen. Danke für euer Verständnis.",
+      f_test: "Testmodus: Das Formular funktioniert, es wird aber nichts gespeichert oder gesendet, solange der Google-Link fehlt.",
+      f_test_done: "(Testmodus: Es wurde nichts gespeichert.)",
       rsvp_before: "Antwort bitte bis zum", rsvp_btn: "Zusage senden",
       rsvp_note: "Das Formular öffnet sich in einem neuen Tab.",
       foot_thanks: "Danke, dass ihr Teil unserer Geschichte seid"
@@ -240,8 +307,75 @@
   });
 
   /* Lien du formulaire et hashtag */
-  $("#rsvpBtn").href = CONFIG.rsvpUrl;
   $("#hashtag").textContent = CONFIG.hashtag;
+
+
+  /* ---- Formulaire de confirmation ---- */
+  (function () {
+    var form = $("#rsvpForm"); if (!form) return;
+    var closed = $("#rsvpClosed"), thanks = $("#rThanks"), status = $("#rStatus"), send = $("#fSend");
+    var testMode = !/^https:\/\//.test(CONFIG.sheetUrl);
+    var isClosed = Date.now() > new Date(CONFIG.rsvpDeadline).getTime();
+    if (isClosed) { form.hidden = true; closed.hidden = false; return; }
+    $("#rsvpTest").hidden = !testMode;
+
+    function sync() {
+      var yes = form.attend.value === "yes";
+      $("#rfCount").hidden = !yes; $("#rfGuests").hidden = !yes;
+    }
+    $$("input[name=attend]", form).forEach(function (r) { r.addEventListener("change", sync); });
+    sync();
+
+    function fail(input, on) { input.closest(".rf").classList.toggle("has-err", on); }
+    function valid() {
+      var ok = true, n = $("#fName"), e = $("#fEmail");
+      var bad = !n.value.trim(); fail(n, bad); if (bad) ok = false;
+      var badE = e.value.trim() !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.value.trim());
+      fail(e, badE); if (badE) ok = false;
+      if (!ok) (bad ? n : e).focus();
+      return ok;
+    }
+    ["fName", "fEmail"].forEach(function (id) { $("#" + id).addEventListener("input", function () { fail(this, false); }); });
+
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (form.botcheck.checked) return;
+      if (!valid()) return;
+      var d = I18N[lang] || I18N.fr, yes = form.attend.value === "yes";
+      var name = form.name.value.trim();
+      var payload = {
+        name: name,
+        attend: yes ? "OUI" : "NON",
+        count: yes ? Number(form.count.value) : 0,
+        guests: yes ? form.guests.value.trim() : "",
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        message: form.message.value.trim(),
+        lang: lang
+      };
+      send.disabled = true; status.textContent = d.f_sending; status.className = "rstatus";
+
+      var req = testMode
+        ? new Promise(function (res) { setTimeout(function () { res({ success: true }); }, 700); })
+        : fetch(CONFIG.sheetUrl, {
+            method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload),
+            redirect: "follow"
+          }).then(function (r) { return r.json(); });
+
+      req.then(function (r) {
+        if (!r || !r.success) throw new Error("send");
+        form.hidden = true;
+        $("#rThanksText").textContent = (yes ? d.f_ok_yes : d.f_ok_no) + (testMode ? " " + d.f_test_done : "");
+        thanks.hidden = false;
+        thanks.scrollIntoView({ behavior: "smooth", block: "center" });
+      }).catch(function () {
+        status.textContent = (I18N[lang] || I18N.fr).f_err; status.className = "rstatus is-err";
+        send.disabled = false;
+      });
+    });
+  })();
 
   /* ---- Compte à rebours : mois, jours, heures, minutes, secondes ---- */
   var cd = { mo: $("#cdMo"), d: $("#cdD"), h: $("#cdH"), m: $("#cdM"), s: $("#cdS") };

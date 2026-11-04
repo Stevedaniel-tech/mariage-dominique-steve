@@ -1017,7 +1017,7 @@ address { font-style: normal; margin: 8px 0 22px; font-size: 1.08rem; }
 .rsvp .lead { max-width: 38ch; }
 .deadline { margin-top: 26px; font-family: var(--f-title); font-style: italic; font-size: 1.15rem; }
 .deadline strong { display: block; margin-top: 2px; font-style: normal; font-weight: 700; font-size: 1.7rem; color: var(--forest); }
-.rsvp .btn { margin-top: 26px; }
+.rsvp .btn { margin-top: 8px; }
 .fine { margin-top: 14px; font-size: 0.85rem; opacity: 0.8; }
 
 /* ---------- 8. Pied de page (brun profond) ---------- */
@@ -1129,3 +1129,51 @@ address { font-style: normal; margin: 8px 0 22px; font-size: 1.08rem; }
   .frame { transform: none !important; }
   .frame img { transform: scale(1.03) !important; }
 }
+
+/* Tenue : devise sous le titre + bloc Inspirations au-dessus des cartes */
+.dress-motto {
+  margin-top: 10px;
+  font-family: var(--f-label);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.7;
+  color: var(--gold);
+}
+.dress-insp { margin-top: 28px; }
+.dress-insp + .dress-cards { margin-top: 28px; }
+
+/* ---------- Formulaire de confirmation ---------- */
+.rform {
+  width: 100%; max-width: 520px; margin-top: 26px; text-align: left;
+  display: grid; gap: 16px; padding: 24px 20px 26px;
+  background: var(--ivory); border: 1px solid rgba(42, 23, 14, 0.25);
+  box-shadow: 0 16px 36px rgba(42, 23, 14, 0.28), inset 0 0 0 5px var(--ivory), inset 0 0 0 6px rgba(217, 165, 33, 0.7);
+  position: relative;
+}
+.rform[hidden], .rthanks[hidden], .rf[hidden], .rtest[hidden], .rsvp-closed[hidden] { display: none; }
+.rf { display: grid; gap: 6px; border: 0; padding: 0; margin: 0; min-width: 0; }
+.rf > label, .rf > legend { font-family: var(--f-label); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); padding: 0; }
+.rf input[type=text], .rf input[type=email], .rf input[type=tel], .rf select, .rf textarea {
+  width: 100%; font: inherit; font-size: 1rem; color: var(--brown);
+  background: #fffaf0; border: 1px solid rgba(42, 23, 14, 0.35); border-radius: 6px; padding: 12px 14px; min-height: 48px;
+}
+.rf textarea { resize: vertical; min-height: 84px; }
+.rf input:focus, .rf select:focus, .rf textarea:focus { outline: 2px solid var(--terracotta); outline-offset: 1px; border-color: var(--terracotta); }
+.rerr { display: none; font-size: 0.82rem; color: #a3281a; }
+.rf.has-err .rerr { display: block; }
+.rf.has-err input { border-color: #a3281a; }
+.rradio { gap: 10px; }
+.opt { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 14px; border: 1px solid rgba(42, 23, 14, 0.35); border-radius: 6px; background: #fffaf0; cursor: pointer; }
+.opt input { width: 20px; height: 20px; accent-color: var(--forest); flex: none; }
+.opt:has(input:checked) { border-color: var(--forest); background: #eaf2dc; }
+.rform .btn { justify-self: center; margin-top: 6px; cursor: pointer; border: 0; }
+.rform .btn:disabled { opacity: 0.6; cursor: wait; }
+.rstatus { text-align: center; min-height: 1.2em; font-size: 0.9rem; }
+.rstatus.is-err { color: #a3281a; font-weight: 600; }
+.rtest { font-size: 0.8rem; padding: 8px 10px; background: rgba(240, 189, 44, 0.35); border-radius: 4px; text-align: center; }
+.rthanks { margin-top: 26px; max-width: 460px; padding: 30px 24px; background: var(--ivory); text-align: center; box-shadow: 0 16px 36px rgba(42, 23, 14, 0.28), inset 0 0 0 5px var(--ivory), inset 0 0 0 6px rgba(217, 165, 33, 0.7); }
+.rthanks-title { font-family: var(--f-script); font-size: 2.8rem; color: var(--terracotta); line-height: 1.1; margin-bottom: 8px; }
+.rsvp-closed { margin-top: 24px; font-family: var(--f-title); font-style: italic; font-size: 1.15rem; }
+@media (min-width: 800px) { .rform { padding: 32px 36px 34px; } }
