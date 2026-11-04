@@ -12,7 +12,7 @@
     // Jour du mariage, affiché en toutes lettres selon la langue.
     eventDay: "2027-05-15T12:00:00+02:00",
     // Adresse de votre Google Sheets (Apps Script) : voir le guide. Les réponses y sont inscrites et vous recevez un e-mail.
-    // Tant que ce texte reste "https://script.google.com/macros/s/AKfycbzDHGLq_7_4Jja-SncXvE23i82v2CmSWubgtHAJeYDu_OYN7PH4agqeXgf-5cyRP3d26A/exec", le formulaire est en MODE TEST (rien n'est enregistré ni envoyé).
+    // Tant que ce texte reste "VOTRE-LIEN-GOOGLE", le formulaire est en MODE TEST (rien n'est enregistré ni envoyé).
     sheetUrl: "https://script.google.com/macros/s/AKfycbzDHGLq_7_4Jja-SncXvE23i82v2CmSWubgtHAJeYDu_OYN7PH4agqeXgf-5cyRP3d26A/exec",
     // Date limite de réponse : 2 mois avant le mariage (fin de journée, heure de Paris).
     rsvpDeadline: "2027-03-15T23:59:00+01:00",
@@ -76,9 +76,9 @@
       f_attend: "Serez-vous présent(e) ?",
       f_yes: "Oui, avec joie",
       f_no: "Non, avec regret",
-      f_count: "Nombre de personnes (vous inclus)",
-      f_guests: "Noms des personnes qui vous accompagnent",
-      f_guests_ph: "Prénom et nom, un par ligne",
+      f_count: "Nombre de personnes (1 accompagnant maximum)", f_c1: "Moi seul(e)", f_c2: "Moi + 1 personne",
+      f_guests: "Nom de la personne qui vous accompagne",
+      f_guests_ph: "Prénom et nom",
       f_msg: "Un petit mot pour les mariés (facultatif)",
       f_send: "Envoyer ma réponse",
       f_sending: "Envoi en cours…",
@@ -145,9 +145,9 @@
       f_attend: "Will you attend?",
       f_yes: "Yes, with joy",
       f_no: "No, with regret",
-      f_count: "Number of people (including you)",
-      f_guests: "Names of the people joining you",
-      f_guests_ph: "First and last name, one per line",
+      f_count: "Number of people (1 companion maximum)", f_c1: "Just me", f_c2: "Me + 1 person",
+      f_guests: "Name of the person joining you",
+      f_guests_ph: "First and last name",
       f_msg: "A little word for the couple (optional)",
       f_send: "Send my reply",
       f_sending: "Sending…",
@@ -214,9 +214,9 @@
       f_attend: "Werdet ihr dabei sein?",
       f_yes: "Ja, sehr gern",
       f_no: "Nein, leider nicht",
-      f_count: "Anzahl der Personen (inklusive euch)",
-      f_guests: "Namen eurer Begleitung",
-      f_guests_ph: "Vor- und Nachname, einer pro Zeile",
+      f_count: "Anzahl der Personen (maximal 1 Begleitung)", f_c1: "Nur ich", f_c2: "Ich + 1 Person",
+      f_guests: "Name eurer Begleitung",
+      f_guests_ph: "Vor- und Nachname",
       f_msg: "Ein paar Worte an das Brautpaar (optional)",
       f_send: "Antwort senden",
       f_sending: "Wird gesendet…",
@@ -321,8 +321,10 @@
 
     function sync() {
       var yes = form.attend.value === "yes";
-      $("#rfCount").hidden = !yes; $("#rfGuests").hidden = !yes;
+      $("#rfCount").hidden = !yes;
+      $("#rfGuests").hidden = !(yes && Number(form.count.value) > 1);
     }
+    form.count.addEventListener("change", sync);
     $$("input[name=attend]", form).forEach(function (r) { r.addEventListener("change", sync); });
     sync();
 
@@ -346,8 +348,8 @@
       var payload = {
         name: name,
         attend: yes ? "OUI" : "NON",
-        count: yes ? Number(form.count.value) : 0,
-        guests: yes ? form.guests.value.trim() : "",
+        count: yes ? Math.min(2, Number(form.count.value) || 1) : 0,
+        guests: (yes && Number(form.count.value) > 1) ? form.guests.value.trim() : "",
         email: form.email.value.trim(),
         phone: form.phone.value.trim(),
         message: form.message.value.trim(),

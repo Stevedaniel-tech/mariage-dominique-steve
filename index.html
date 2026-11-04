@@ -407,12 +407,12 @@
         <div class="rf" id="rfCount">
           <label for="fCount" data-i18n="f_count">Nombre de personnes (vous inclus)</label>
           <select id="fCount" name="count">
-            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+            <option value="1" data-i18n="f_c1">Moi seul(e)</option><option value="2" data-i18n="f_c2">Moi + 1 personne</option>
           </select>
         </div>
         <div class="rf" id="rfGuests">
           <label for="fGuests" data-i18n="f_guests">Noms des personnes qui vous accompagnent</label>
-          <textarea id="fGuests" name="guests" rows="2" maxlength="300" data-i18n-attr="placeholder:f_guests_ph" placeholder="Prénom et nom, un par ligne"></textarea>
+          <textarea id="fGuests" name="guests" rows="1" maxlength="80" data-i18n-attr="placeholder:f_guests_ph" placeholder="Prénom et nom"></textarea>
         </div>
         <div class="rf">
           <label for="fMsg" data-i18n="f_msg">Un petit mot pour les mariés (facultatif)</label>
