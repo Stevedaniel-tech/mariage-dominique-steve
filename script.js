@@ -12,8 +12,8 @@
     // Jour du mariage, affiché en toutes lettres selon la langue.
     eventDay: "2027-05-15T12:00:00+02:00",
     // Adresse de votre Google Sheets (Apps Script) : voir le guide. Les réponses y sont inscrites et vous recevez un e-mail.
-    // Tant que ce texte reste "VOTRE-LIEN-GOOGLE", le formulaire est en MODE TEST (rien n'est enregistré ni envoyé).
-    sheetUrl: "VOTRE-LIEN-GOOGLE",
+    // Tant que ce texte reste "https://script.google.com/macros/s/AKfycbzDHGLq_7_4Jja-SncXvE23i82v2CmSWubgtHAJeYDu_OYN7PH4agqeXgf-5cyRP3d26A/exec", le formulaire est en MODE TEST (rien n'est enregistré ni envoyé).
+    sheetUrl: "https://script.google.com/macros/s/AKfycbzDHGLq_7_4Jja-SncXvE23i82v2CmSWubgtHAJeYDu_OYN7PH4agqeXgf-5cyRP3d26A/exec",
     // Date limite de réponse : 2 mois avant le mariage (fin de journée, heure de Paris).
     rsvpDeadline: "2027-03-15T23:59:00+01:00",
     // Votre hashtag.
