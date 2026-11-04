@@ -142,39 +142,121 @@
       <h2 class="h2 split" data-i18n="story_title" data-split>Deux chemins, une même route</h2>
       <p class="lead reveal" data-i18n="story_lead">Quelques moments qui nous ont menés jusqu’à ce jour.</p>
 
+      <!-- La ligne se dessine au fil du défilement. Touchez un titre pour ouvrir la photo et le récit. -->
       <div class="tl" id="tl">
-        <div class="tl-track" id="tlTrack" aria-hidden="true"></div>
         <div class="tl-line" id="tlLine" aria-hidden="true"></div>
         <ol class="tl-list">
-          <!-- Pour ajouter une date à une étape, écrivez-la dans le <p class="tl-when"> de l'étape. -->
           <li class="tl-item reveal">
-            <span class="tl-node" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.1L22 12l-7.6 2.9L12 22l-2.4-7.1L2 12l7.6-2.9z"/></svg>
-            </span>
+            <span class="tl-node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.1L22 12l-7.6 2.9L12 22l-2.4-7.1L2 12l7.6-2.9z"/></svg></span>
             <div class="tl-body">
-              <p class="tl-when"></p>
-              <h3 class="tl-title" data-i18n="t1_title">La rencontre</h3>
-              <p class="tl-text" data-i18n="t1_text">Un regard, un sourire, et deux chemins se sont croisés. Nous ne le savions pas encore, mais tout commençait là.</p>
+              <h3 class="tl-title">
+                <button type="button" class="tl-toggle" id="tb1" aria-expanded="false" aria-controls="tp1">
+                  <span class="tl-name" data-i18n="t1_title">Rencontre &amp; Premier rendez-vous</span>
+                  <span class="tl-cta"><span class="tl-plus" aria-hidden="true"></span><span class="tl-hint" data-i18n="tl_hint">Voir la photo et le récit</span></span>
+                </button>
+              </h3>
+              <div class="tl-panel" id="tp1" role="region" aria-labelledby="tb1" inert>
+                <div class="tl-panel-in"><div class="memory-wrap"><article class="memory">
+                <figure class="memory-photo">
+                  <img src="photos/histoire-1.jpg" width="720" height="900" alt="Rencontre &amp; Premier rendez-vous" data-i18n-attr="alt:t1_title" loading="lazy" decoding="async">
+                </figure>
+                <div class="memory-orn" aria-hidden="true"><i></i></div>
+                <p class="memory-story" data-i18n="t1_text">Un regard, un sourire, et deux chemins se sont croisés. Nous ne le savions pas encore, mais tout commençait là.</p>
+                <p class="memory-sign">Dominique &amp; Steve</p>
+                </article></div></div>
+              </div>
             </div>
           </li>
           <li class="tl-item reveal">
-            <span class="tl-node" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg>
-            </span>
+            <span class="tl-node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg></span>
             <div class="tl-body">
-              <p class="tl-when"></p>
-              <h3 class="tl-title" data-i18n="t2_title">Le premier rendez-vous</h3>
-              <p class="tl-text" data-i18n="t2_text">Les mots sont venus tout seuls, le temps a filé. Ce soir-là, nous avons compris que cette histoire avait quelque chose de rare.</p>
+              <h3 class="tl-title">
+                <button type="button" class="tl-toggle" id="tb2" aria-expanded="false" aria-controls="tp2">
+                  <span class="tl-name" data-i18n="t2_title">Première sortie en couple</span>
+                  <span class="tl-cta"><span class="tl-plus" aria-hidden="true"></span><span class="tl-hint" data-i18n="tl_hint">Voir la photo et le récit</span></span>
+                </button>
+              </h3>
+              <div class="tl-panel" id="tp2" role="region" aria-labelledby="tb2" inert>
+                <div class="tl-panel-in"><div class="memory-wrap"><article class="memory">
+                <figure class="memory-photo">
+                  <img src="photos/histoire-2.jpg" width="720" height="900" alt="Première sortie en couple" data-i18n-attr="alt:t2_title" loading="lazy" decoding="async">
+                </figure>
+                <div class="memory-orn" aria-hidden="true"><i></i></div>
+                <p class="memory-story" data-i18n="t2_text">Nous apprenions davantage à nous connaître, à nous faire confiance. Ce soir-là, nous avons compris que cette histoire avait quelque chose de rare.</p>
+                <p class="memory-sign">Dominique &amp; Steve</p>
+                </article></div></div>
+              </div>
             </div>
           </li>
           <li class="tl-item reveal">
-            <span class="tl-node" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="15.5" r="5.5"/><path d="M8 6.5 12 2.5 16 6.5 12 10Z" fill="currentColor" stroke-width="1"/></svg>
-            </span>
+            <span class="tl-node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="15.5" r="5.5"/><path d="M8 6.5 12 2.5 16 6.5 12 10Z" fill="currentColor" stroke-width="1"/></svg></span>
             <div class="tl-body">
-              <p class="tl-when"></p>
-              <h3 class="tl-title" data-i18n="t3_title">La demande en mariage</h3>
-              <p class="tl-text" data-i18n="t3_text">Une question, un oui venu du cœur. Le début de notre plus belle promesse.</p>
+              <h3 class="tl-title">
+                <button type="button" class="tl-toggle" id="tb3" aria-expanded="false" aria-controls="tp3">
+                  <span class="tl-name" data-i18n="t3_title">Demande en mariage</span>
+                  <span class="tl-cta"><span class="tl-plus" aria-hidden="true"></span><span class="tl-hint" data-i18n="tl_hint_video">Voir la vidéo et le récit</span></span>
+                </button>
+              </h3>
+              <div class="tl-panel" id="tp3" role="region" aria-labelledby="tb3" inert>
+                <div class="tl-panel-in"><div class="memory-wrap"><article class="memory">
+                <figure class="memory-photo">
+                  <img src="photos/histoire-3.jpg" width="720" height="900" alt="Demande en mariage" data-i18n-attr="alt:t3_title" loading="lazy" decoding="async">
+                  <video controls playsinline preload="none" data-src="photos/demande.mp4" poster="photos/histoire-3.jpg" aria-label="Vidéo de la demande en mariage" data-i18n-attr="aria-label:vid_label"></video>
+                </figure>
+                <div class="memory-orn" aria-hidden="true"><i></i></div>
+                <p class="memory-story" data-i18n="t3_text">Devant notre famille et nos ami(e)s, une question, un oui venu du cœur. Le début de notre plus belle promesse.</p>
+                <p class="memory-sign">Dominique &amp; Steve</p>
+                </article></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="tl-item reveal">
+            <span class="tl-node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v18M6.500 9h11"/></svg></span>
+            <div class="tl-body">
+              <h3 class="tl-title">
+                <button type="button" class="tl-toggle" id="tb4" aria-expanded="false" aria-controls="tp4">
+                  <span class="tl-name" data-i18n="t4_title">Bénédiction nuptiale</span>
+                  <span class="tl-cta"><span class="tl-plus" aria-hidden="true"></span><span class="tl-hint" data-i18n="tl_hint">Voir la photo et le récit</span></span>
+                </button>
+              </h3>
+              <div class="tl-panel" id="tp4" role="region" aria-labelledby="tb4" inert>
+                <div class="tl-panel-in"><div class="memory-wrap"><article class="memory">
+                <figure class="memory-photo">
+                  <img src="photos/histoire-4.jpg" width="720" height="900" alt="Bénédiction nuptiale" data-i18n-attr="alt:t4_title" loading="lazy" decoding="async">
+                </figure>
+                <div class="memory-orn" aria-hidden="true"><i></i></div>
+                <p class="memory-story" data-i18n="t4_text">Devant Dieu, nous avons décidé de faire de notre couple une corde à trois fils, dont le SEIGNEUR est le guide suprême.</p>
+                <p class="memory-sign">Dominique &amp; Steve</p>
+                </article></div></div>
+              </div>
+            </div>
+          </li>
+          <li class="tl-item tl-item--final reveal">
+            <span class="tl-node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21C7 17 3 13.500 3 9.500 3 6.700 5.200 5 7.500 5c1.800 0 3.500 1 4.500 2.700C13 6 14.700 5 16.500 5 18.800 5 21 6.700 21 9.500 21 13.500 17 17 12 21z"/></svg></span>
+            <div class="tl-body">
+              <p class="tl-date" data-date>15 mai 2027</p>
+              <h3 class="tl-title">
+                <button type="button" class="tl-toggle" id="tb5" aria-expanded="false" aria-controls="tp5">
+                  <span class="tl-name" data-i18n="t5_title">Le Grand Jour</span>
+                  <span class="tl-cta"><span class="tl-plus" aria-hidden="true"></span><span class="tl-hint" data-i18n="tl_hint_final">Découvrir notre grand jour</span></span>
+                </button>
+              </h3>
+              <div class="tl-panel" id="tp5" role="region" aria-labelledby="tb5" inert>
+                <div class="tl-panel-in"><div class="memory-wrap"><article class="memory">
+                <figure class="memory-photo memory-photo--grand">
+                  <div class="grand">
+                    <p class="grand-kicker" data-i18n="kind">Mariage coutumier</p>
+                    <p class="grand-names">Dominique &amp; Steve</p>
+                    <img class="grand-rings" src="photos/alliances.webp" width="620" height="486" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                    <p class="grand-date" data-date>15 mai 2027</p>
+                    <p class="grand-place">Paris FACTORY 58 · Bobigny</p>
+                  </div>
+                </figure>
+                <div class="memory-orn" aria-hidden="true"><i></i></div>
+                <p class="memory-story" data-i18n="t5_text">Le 15 mai 2027, nos familles se réunissent pour bénir notre union selon la tradition. Soyez des nôtres.</p>
+                <p class="memory-sign">Dominique &amp; Steve</p>
+                </article></div></div>
+              </div>
             </div>
           </li>
         </ol>

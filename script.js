@@ -39,9 +39,12 @@
       cue: "Notre histoire",
       story_kicker: "Notre histoire", story_title: "Deux chemins, une même route",
       story_lead: "Quelques moments qui nous ont menés jusqu’à ce jour.",
-      t1_title: "La rencontre", t1_text: "Un regard, un sourire, et deux chemins se sont croisés. Nous ne le savions pas encore, mais tout commençait là.",
-      t2_title: "Le premier rendez-vous", t2_text: "Les mots sont venus tout seuls, le temps a filé. Ce soir-là, nous avons compris que cette histoire avait quelque chose de rare.",
-      t3_title: "La demande en mariage", t3_text: "Une question, un oui venu du cœur. Le début de notre plus belle promesse.",
+      t1_title: "Rencontre & Premier rendez-vous", t1_text: "Un regard, un sourire, et deux chemins se sont croisés. Nous ne le savions pas encore, mais tout commençait là.",
+      t2_title: "Première sortie en couple", t2_text: "Nous apprenions davantage à nous connaître, à nous faire confiance. Ce soir-là, nous avons compris que cette histoire avait quelque chose de rare.",
+      t3_title: "Demande en mariage", t3_text: "Devant notre famille et nos ami(e)s, une question, un oui venu du cœur. Le début de notre plus belle promesse.",
+      t4_title: "Bénédiction nuptiale", t4_text: "Devant Dieu, nous avons décidé de faire de notre couple une corde à trois fils, dont le SEIGNEUR est le guide suprême.",
+      t5_title: "Le Grand Jour", t5_text: "Le 15 mai 2027, nos familles se réunissent pour bénir notre union selon la tradition. Soyez des nôtres.",
+      tl_hint: "Voir la photo et le récit", tl_hint_video: "Voir la vidéo et le récit", tl_hint_final: "Découvrir notre grand jour", vid_label: "Vidéo de la demande en mariage",
       gal_kicker: "Galerie", gal_title: "Nos plus beaux moments", gal_lead: "Quelques images de notre histoire.",
       gal_alt: "Dominique et Steve, photo {n}",
       prog_kicker: "Le programme", prog_title: "Le déroulé de la journée",
@@ -83,9 +86,12 @@
       cue: "Our story",
       story_kicker: "Our story", story_title: "Two paths, one road",
       story_lead: "A few moments that led us to this day.",
-      t1_title: "The meeting", t1_text: "A glance, a smile, and two paths crossed. We did not know it yet, but everything began there.",
-      t2_title: "The first date", t2_text: "The words came easily and time slipped away. That evening, we knew this story was something rare.",
-      t3_title: "The proposal", t3_text: "One question, one heartfelt yes. The beginning of our most beautiful promise.",
+      t1_title: "Meeting & First Date", t1_text: "A glance, a smile, and two paths crossed. We did not know it yet, but everything began there.",
+      t2_title: "First Outing as a Couple", t2_text: "We were getting to know each other better and learning to trust one another. That evening, we understood that this story was something rare.",
+      t3_title: "The Proposal", t3_text: "In front of our family and friends, one question, one heartfelt yes. The beginning of our most beautiful promise.",
+      t4_title: "Wedding Blessing", t4_text: "Before God, we decided to make our couple a cord of three strands, with the LORD as our supreme guide.",
+      t5_title: "The Big Day", t5_text: "On 15 May 2027, our families gather to bless our union according to tradition. Join us.",
+      tl_hint: "See the photo and story", tl_hint_video: "Watch the video and story", tl_hint_final: "Discover our big day", vid_label: "Proposal video",
       gal_kicker: "Gallery", gal_title: "Our finest moments", gal_lead: "A few images from our story.",
       gal_alt: "Dominique and Steve, photo {n}",
       prog_kicker: "The programme", prog_title: "How the day unfolds",
@@ -127,9 +133,12 @@
       cue: "Unsere Geschichte",
       story_kicker: "Unsere Geschichte", story_title: "Zwei Wege, ein gemeinsamer Weg",
       story_lead: "Einige Momente, die uns bis zu diesem Tag geführt haben.",
-      t1_title: "Die erste Begegnung", t1_text: "Ein Blick, ein Lächeln, und zwei Wege kreuzten sich. Wir ahnten es noch nicht, aber alles begann dort.",
-      t2_title: "Das erste Date", t2_text: "Die Worte kamen von allein, die Zeit verflog. An diesem Abend wussten wir, dass diese Geschichte etwas Seltenes ist.",
-      t3_title: "Der Heiratsantrag", t3_text: "Eine Frage, ein Ja von Herzen. Der Anfang unseres schönsten Versprechens.",
+      t1_title: "Begegnung & erstes Date", t1_text: "Ein Blick, ein Lächeln, und zwei Wege kreuzten sich. Wir ahnten es noch nicht, aber alles begann dort.",
+      t2_title: "Erster gemeinsamer Ausflug", t2_text: "Wir lernten uns besser kennen und einander zu vertrauen. An diesem Abend wussten wir, dass diese Geschichte etwas Seltenes ist.",
+      t3_title: "Der Heiratsantrag", t3_text: "Vor unserer Familie und unseren Freunden: eine Frage, ein Ja von Herzen. Der Anfang unseres schönsten Versprechens.",
+      t4_title: "Der Hochzeitssegen", t4_text: "Vor Gott haben wir beschlossen, aus unserer Partnerschaft eine dreifache Schnur zu machen, deren oberster Führer der HERR ist.",
+      t5_title: "Der große Tag", t5_text: "Am 15. Mai 2027 versammeln sich unsere Familien, um unsere Verbindung nach der Tradition zu segnen. Feiert mit uns.",
+      tl_hint: "Foto und Geschichte ansehen", tl_hint_video: "Video und Geschichte ansehen", tl_hint_final: "Unseren großen Tag entdecken", vid_label: "Video vom Heiratsantrag",
       gal_kicker: "Galerie", gal_title: "Unsere schönsten Momente", gal_lead: "Einige Bilder aus unserer Geschichte.",
       gal_alt: "Dominique und Steve, Foto {n}",
       prog_kicker: "Der Ablauf", prog_title: "So verläuft der Tag",
@@ -214,6 +223,8 @@
 
     var day = fmt(CONFIG.eventDay, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
     if (day) $("#heroDate").textContent = day;
+    var dd = fmt(CONFIG.eventDay, { day: "numeric", month: "long", year: "numeric" });
+    if (dd) $$("[data-date]").forEach(function (el) { el.textContent = dd; });
     var dl = fmt(CONFIG.rsvpDeadline, { day: "numeric", month: "long", year: "numeric" });
     if (dl) $("#deadlineDate").textContent = dl;
 
@@ -261,8 +272,8 @@
   tick();
   setInterval(tick, 1000);
 
-  /* ---- Frise qui se dessine au défilement ---- */
-  var tl = $("#tl"), track = $("#tlTrack"), line = $("#tlLine");
+  /* ---- Frise : la ligne se dessine au défilement + volets photo / récit ---- */
+  var tl = $("#tl"), line = $("#tlLine");
   var items = $$(".tl-item"), ys = [], firstY = 23, span = 0;
   function nodeY(li) {
     var n = $(".tl-node", li);
@@ -273,18 +284,53 @@
     ys = items.map(nodeY);
     firstY = ys[0];
     span = Math.max(0, ys[ys.length - 1] - firstY);
-    track.style.top = firstY + "px";
-    track.style.height = span + "px";
-    track.style.bottom = "auto";
     line.style.top = firstY + "px";
     onScroll();
   }
   function timeline() {
     if (!ys.length) return;
+    if (reduce) {   // mouvement réduit : frise déjà tracée
+      line.style.height = span + "px";
+      items.forEach(function (li) { li.classList.add("is-on"); });
+      return;
+    }
     var reach = window.innerHeight * 0.62 - tl.getBoundingClientRect().top;
     line.style.height = Math.min(span, Math.max(0, reach - firstY)) + "px";
     items.forEach(function (li, i) { li.classList.toggle("is-on", reach >= ys[i] - 2); });
   }
+
+  function loadVideo(li) {
+    var v = $("video[data-src]", li);
+    if (!v || v.getAttribute("data-tried")) return;
+    v.setAttribute("data-tried", "1");
+    v.addEventListener("loadedmetadata", function () { v.parentNode.classList.add("has-video"); });
+    v.addEventListener("error", function () { v.removeAttribute("src"); });
+    v.preload = "metadata";
+    v.src = v.getAttribute("data-src");
+  }
+  function setOpen(li, open) {
+    li.classList.toggle("open", open);
+    var btn = $(".tl-toggle", li), panel = $(".tl-panel", li);
+    btn.setAttribute("aria-expanded", String(open));
+    if (open) panel.removeAttribute("inert"); else panel.setAttribute("inert", "");
+    if (!open) $$("video", li).forEach(function (v) { try { v.pause(); } catch (e) {} });
+  }
+  items.forEach(function (li) {
+    $(".tl-toggle", li).addEventListener("click", function () {
+      var willOpen = !li.classList.contains("open");
+      items.forEach(function (o) { if (o !== li) setOpen(o, false); });
+      setOpen(li, willOpen);
+      if (willOpen) {
+        loadVideo(li);
+        setTimeout(function () {   // fait défiler juste ce qu'il faut pour voir tout le volet
+          var r = $(".tl-panel", li).getBoundingClientRect();
+          if (r.bottom > window.innerHeight - 16) {
+            window.scrollBy({ top: Math.min(r.bottom - window.innerHeight + 28, r.top - 90), behavior: reduce ? "auto" : "smooth" });
+          }
+        }, reduce ? 50 : 700);
+      }
+    });
+  });
 
   /* ---- Galerie : léger effet de profondeur ---- */
   var shots = $$(".shot"), depths = [28, -22, 36, -28, 24, -34];

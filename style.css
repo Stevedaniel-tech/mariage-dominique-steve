@@ -660,13 +660,18 @@ body:not(.is-open) .brand, body:not(.is-open) .nav, body:not(.is-open) .rsvp-btn
 .story { background: var(--pat-light), var(--yellow); color: var(--brown); }
 .story .kicker { color: var(--forest); }
 .tl { position: relative; isolation: isolate; margin-top: 48px; }
-.tl-track, .tl-line { position: absolute; left: 21px; width: 4px; }
-.tl-track {
+/* Le trait n'existe qu'à mesure qu'on défile : sa hauteur est pilotée par le défilement */
+.tl-line {
+  position: absolute;
+  z-index: 1;
+  left: 21px;
   top: 23px;
-  bottom: 23px;
-  background: repeating-linear-gradient(180deg, rgba(42, 23, 14, 0.4) 0 6px, transparent 6px 12px);
+  width: 4px;
+  height: 0;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--forest) 0%, var(--forest) 55%, var(--terracotta) 100%);
+  transition: height 0.25s linear;
 }
-.tl-line { top: 23px; height: 0; z-index: 1; background: var(--forest); }
 .tl-line::after {
   content: "";
   position: absolute;
@@ -679,7 +684,8 @@ body:not(.is-open) .brand, body:not(.is-open) .nav, body:not(.is-open) .rsvp-btn
   border: 2px solid var(--brown);
   transform: rotate(45deg);
 }
-.tl-item { position: relative; padding-left: 66px; padding-bottom: 50px; }
+.tl-list { list-style: none; margin: 0; padding: 0; }
+.tl-item { position: relative; padding-left: 66px; padding-bottom: 46px; }
 .tl-item:last-child { padding-bottom: 0; }
 .tl-node {
   position: absolute;
@@ -694,28 +700,172 @@ body:not(.is-open) .brand, body:not(.is-open) .nav, body:not(.is-open) .rsvp-btn
   background: var(--gold-soft);
   color: var(--forest);
   border: 2px solid var(--forest);
-  transition: background 0.6s, color 0.6s, transform 0.6s, box-shadow 0.6s;
+  transition: background 0.6s, color 0.6s, transform 0.6s, box-shadow 0.6s, opacity 0.6s;
 }
 .tl-node svg { width: 22px; height: 22px; }
-.tl-item.is-on .tl-node {
-  background: var(--forest);
-  color: var(--gold-soft);
-  transform: scale(1.08);
-  box-shadow: 0 0 0 4px rgba(180, 81, 47, 0.42);
-}
+.js .tl-item:not(.is-on) .tl-node { opacity: 0.45; transform: scale(0.88); }
+.tl-item.is-on .tl-node { background: var(--forest); color: var(--gold-soft); transform: scale(1.06); box-shadow: 0 0 0 4px rgba(180, 81, 47, 0.42); }
 .tl-body { min-width: 0; padding-top: 2px; }
-.tl-when { font-family: var(--f-label); font-size: 0.74rem; letter-spacing: 0.2em; color: var(--forest); }
-.tl-when:empty { display: none; }
-.tl-title {
-  margin-top: 4px;
+
+/* Titre cliquable */
+.tl-title { margin: 0; font-weight: inherit; }
+.tl-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  color: var(--forest);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.6s;
+}
+.js .tl-item:not(.is-on):not(.open) .tl-toggle { opacity: 0.45; }
+.tl-name {
   font-family: var(--f-label);
   font-weight: 700;
   font-size: 1.08rem;
+  line-height: 1.3;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--forest);
+  text-wrap: balance;
+  transition: color 0.4s;
 }
-.tl-text { margin-top: 8px; max-width: 40ch; }
+.tl-toggle:hover .tl-name { color: var(--terracotta); }
+.tl-cta { display: inline-flex; align-items: center; gap: 9px; font-family: var(--f-text); font-size: 0.88rem; color: var(--brown); }
+.tl-hint { border-bottom: 1px solid rgba(42, 23, 14, 0.45); }
+.tl-plus {
+  position: relative;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--forest);
+  background: rgba(255, 246, 220, 0.55);
+  transition: transform 0.6s var(--ease), background 0.4s;
+}
+.tl-plus::before, .tl-plus::after { content: ""; position: absolute; left: 50%; top: 50%; background: var(--forest); transform: translate(-50%, -50%); transition: background 0.4s; }
+.tl-plus::before { width: 10px; height: 1.5px; }
+.tl-plus::after { width: 1.5px; height: 10px; }
+.tl-item.open .tl-plus { transform: rotate(45deg); background: var(--forest); }
+.tl-item.open .tl-plus::before, .tl-item.open .tl-plus::after { background: var(--gold-soft); }
+
+/* Volet qui s'ouvre : carte ivoire dans l'esprit du faire-part */
+.tl-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows 0.9s var(--ease), opacity 0.7s ease, visibility 0s linear 0.9s;
+}
+.tl-item.open .tl-panel {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition: grid-template-rows 0.9s var(--ease), opacity 0.8s ease 0.15s, visibility 0s;
+}
+.tl-panel-in { min-height: 0; overflow: hidden; }
+.memory-wrap { padding: 16px 6px 26px; }
+.memory {
+  position: relative;
+  max-width: 440px;
+  padding: 26px 16px 22px;
+  background: #fcf5da;
+  color: var(--brown);
+  text-align: center;
+  box-shadow: 0 16px 34px rgba(42, 23, 14, 0.3);
+}
+.memory::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 8px; background: var(--strip) repeat-x; background-size: 16px 8px; }
+.memory::after { content: ""; position: absolute; inset: 14px 6px 6px; border: 1px solid var(--gold); pointer-events: none; }
+.memory-photo {
+  position: relative;
+  margin: 8px 12px 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 999px 999px 4px 4px;
+  border: 3px solid var(--gold);
+  outline: 1px solid rgba(180, 81, 47, 0.55);
+  outline-offset: 4px;
+  background: var(--brown-2);
+}
+.memory-photo > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  transition: transform 1.8s var(--ease);
+}
+.tl-item.open .memory-photo > img { transform: scale(1); }
+/* Vidéo (étape 3) : affichée seulement si le fichier existe, sinon la photo reste */
+.memory-photo video { display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; }
+.memory-photo.has-video { border-radius: 10px; }
+.memory-photo.has-video > img { display: none; }
+.memory-photo.has-video video { display: block; }
+.memory-orn { display: flex; align-items: center; gap: 12px; margin: 22px 20px 0; }
+.memory-orn::before, .memory-orn::after { content: ""; flex: 1; height: 1px; background: var(--gold); }
+.memory-orn i { width: 7px; height: 7px; background: var(--terracotta); transform: rotate(45deg); }
+.memory-story {
+  margin: 16px 6px 0;
+  font-family: var(--f-title);
+  font-style: italic;
+  font-size: 1.06rem;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+.memory-sign { margin-top: 10px; font-family: var(--f-script); font-size: 1.9rem; line-height: 1.2; color: var(--terracotta); }
+
+/* Le Grand Jour : conclusion de la frise, date en évidence */
+.tl-date {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 6px 16px 5px;
+  background: var(--forest);
+  color: var(--yellow);
+  border: 2px solid var(--brown);
+  box-shadow: 4px 4px 0 var(--terracotta);
+  font-family: var(--f-title);
+  font-weight: 700;
+  font-size: 1.45rem;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+.tl-item--final .tl-node {
+  top: -4px;
+  left: -4px;
+  width: 54px;
+  height: 54px;
+  background: radial-gradient(circle at 35% 28%, #fbe49a, #e3ad28 48%, #8d5f08 100%);
+  color: var(--brown);
+  border-color: var(--brown);
+}
+.tl-item--final .tl-node svg { width: 26px; height: 26px; }
+.tl-item--final.is-on .tl-node {
+  background: radial-gradient(circle at 35% 28%, #fbe49a, #e3ad28 48%, #8d5f08 100%);
+  color: var(--brown);
+  box-shadow: 0 0 0 4px var(--brown), 0 0 0 5px var(--gold-soft), 0 8px 18px rgba(42, 23, 14, 0.35);
+}
+.tl-item--final .tl-name { font-size: 1.25rem; }
+.memory-photo--grand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pat-dark), radial-gradient(120% 80% at 50% 20%, rgba(180, 81, 47, 0.55), transparent 70%), var(--forest);
+  color: var(--ivory);
+}
+.memory-photo--grand { aspect-ratio: 5 / 7; }
+.memory-photo--grand .grand { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 58px 14px 22px; text-align: center; }
+.grand-kicker { font-family: var(--f-label); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-soft); }
+.grand-names { font-family: var(--f-script); font-size: clamp(2.3rem, 10vw, 3rem); line-height: 1.05; color: var(--ivory); text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5); }
+.grand-rings { width: 74px; height: auto; filter: drop-shadow(0 4px 7px rgba(0, 0, 0, 0.5)); }
+.grand-date { font-family: var(--f-title); font-weight: 700; font-size: clamp(1.9rem, 8.4vw, 2.5rem); line-height: 1.1; letter-spacing: 0.02em; color: var(--yellow); }
+.grand-place { font-family: var(--f-label); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; }
 
 /* ---------- 3. Galerie (brun profond) ---------- */
 .gallery { background: var(--pat-dark), var(--brown); overflow: hidden; }
@@ -910,13 +1060,20 @@ address { font-style: normal; margin: 8px 0 22px; font-size: 1.08rem; }
   .count b { font-size: 2.7rem; }
   .count span { font-size: 0.66rem; letter-spacing: 0.16em; }
 
-  .tl-track, .tl-line { left: calc(50% - 2px); }
+  .tl-line { left: calc(50% - 2px); }
   .tl-item { width: 50%; padding-left: 0; padding-right: 58px; text-align: right; }
   .tl-item:nth-child(even) { margin-left: 50%; padding-right: 0; padding-left: 58px; text-align: left; }
-  .tl-item .tl-text { margin-left: auto; }
-  .tl-item:nth-child(even) .tl-text { margin-left: 0; }
   .tl-node { left: auto; right: -23px; }
   .tl-item:nth-child(even) .tl-node { right: auto; left: -23px; }
+  .tl-toggle { align-items: flex-end; text-align: right; }
+  .tl-item:nth-child(even) .tl-toggle { align-items: flex-start; text-align: left; }
+  .memory { margin-left: auto; }
+  .tl-item:nth-child(even) .memory { margin-left: 0; }
+  /* Le Grand Jour : finale centrée sous la ligne */
+  .tl-item--final { width: 100%; margin-left: 0; padding: 78px 0 0; text-align: center; }
+  .tl-item--final .tl-node { left: 50%; right: auto; top: 0; margin-left: -27px; }
+  .tl-item--final .tl-toggle { align-items: center; text-align: center; }
+  .tl-item--final .memory { margin-inline: auto; }
 
   .gal { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; align-items: start; max-width: 1240px; margin-inline: auto; }
   .shot { width: 100%; align-self: auto !important; }
@@ -959,7 +1116,7 @@ address { font-style: normal; margin: 8px 0 22px; font-size: 1.08rem; }
   .intro.opening .seal { animation-duration: 0.01s; }
   .intro.opening .card { animation-duration: 0.01s; animation-delay: 0s; }
   .flap { transition: none; }
-  .tl-node, .btn, .stay a, .topbar { transition-duration: 0.01s; }
+  .tl-node, .btn, .stay a, .topbar, .tl-line, .tl-plus, .tl-panel, .memory-photo img { transition-duration: 0.01s; transition-delay: 0s; }
   .frame { transform: none !important; }
   .frame img { transform: scale(1.03) !important; }
 }
