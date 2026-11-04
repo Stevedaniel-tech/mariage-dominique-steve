@@ -890,7 +890,6 @@ body:not(.is-open) .brand, body:not(.is-open) .nav, body:not(.is-open) .rsvp-btn
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
   transform: translate3d(0, var(--fy, 0px), 0);
 }
-.shot:nth-child(3n + 2) .frame { aspect-ratio: 1 / 1; }
 .frame img {
   position: absolute;
   left: 0;
@@ -1079,7 +1078,7 @@ address { font-style: normal; margin: 8px 0 22px; font-size: 1.08rem; }
   .shot { width: 100%; align-self: auto !important; }
   .shot:nth-child(3n + 2) { margin-top: 96px; }
   .shot:nth-child(3n) { margin-top: 40px; }
-  .shot:nth-child(3n + 2) .frame { aspect-ratio: 4 / 5; }
+
 
   .prog-item { grid-template-columns: 8rem minmax(0, 1fr); gap: 36px; padding: 30px 0; }
   .prog-time { font-size: 2.6rem; }
