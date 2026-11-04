@@ -462,11 +462,11 @@ body:not(.is-open) .brand, body:not(.is-open) .nav, body:not(.is-open) .rsvp-btn
 .hero-bg {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: 50% 34%;
 }
 .hero-split { flex: 1; display: flex; flex-direction: column; }
 .pane { position: relative; isolation: isolate; }
@@ -526,6 +526,7 @@ body:not(.is-open) .brand, body:not(.is-open) .nav, body:not(.is-open) .rsvp-btn
 }
 .eyebrow::before, .eyebrow::after { content: ""; width: 7px; height: 7px; background: var(--terracotta); transform: rotate(45deg); }
 .hero-spacer { flex: 1; min-height: 12px; }
+/* Prénoms centrés (Pinyon Script) avec « & » doré, petites alliances en accompagnement */
 .names { display: flex; flex-direction: column; align-items: center; line-height: 0.92; font-weight: 400; }
 .name {
   font-family: var(--f-script);
@@ -534,28 +535,41 @@ body:not(.is-open) .brand, body:not(.is-open) .nav, body:not(.is-open) .rsvp-btn
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
 }
 .amp {
-  font-family: var(--f-title);
-  font-style: italic;
-  font-size: clamp(1.3rem, 5vw, 2.2rem);
+  font-family: var(--f-script);
+  font-style: normal;
+  font-size: clamp(2.2rem, 8vw, 3.4rem);
+  line-height: 0.8;
   color: var(--yellow);
   margin-block: -0.05em;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
 }
 .rings {
   display: block;
-  width: clamp(104px, 30vw, 136px);
+  width: clamp(62px, 17vw, 78px);
   height: auto;
-  margin-top: 10px;
-  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.55));
+  margin-top: 12px;
+  filter: drop-shadow(0 4px 7px rgba(0, 0, 0, 0.5));
 }
-.gem-glint {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: glint 5s ease-in-out infinite;
+
+/* Titre « Mariage coutumier » : centré sur toute la largeur de la page */
+.eyebrow-wrap {
+  position: absolute;
+  z-index: 6;
+  left: 0;
+  right: 0;
+  top: calc(env(safe-area-inset-top, 0px) + 74px);
+  display: flex;
+  justify-content: center;
+  padding-inline: 16px;
+  pointer-events: none;
 }
-@keyframes glint {
-  0%, 62%, 100% { opacity: 0; transform: scale(0.4); }
-  78% { opacity: 1; transform: scale(1.15); }
+.eyebrow {
+  padding: 9px 20px;
+  background: rgba(42, 23, 14, 0.72);
+  border: 1px solid rgba(241, 210, 122, 0.55);
+  border-radius: 999px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 /* Moitié 2 : photo de fond assombrie, verset, date et compte à rebours */
@@ -573,7 +587,7 @@ body:not(.is-open) .brand, body:not(.is-open) .nav, body:not(.is-open) .rsvp-btn
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--pat-dark), linear-gradient(180deg, rgba(42, 23, 14, 0.8), rgba(42, 23, 14, 0.9));
+  background: var(--pat-dark), linear-gradient(180deg, rgba(42, 23, 14, 0.66), rgba(42, 23, 14, 0.84));
 }
 .pane-info .pane-in { display: flex; flex-direction: column; align-items: center; }
 .verse { max-width: 36ch; }
@@ -887,7 +901,8 @@ address { font-style: normal; margin: 8px 0 22px; font-size: 1.08rem; }
   .pane-photo .pane-in { padding-top: 96px; padding-bottom: 56px; }
   .pane-info { flex: 1 1 0; padding-block: 96px 56px; }
   .pane-info .pane-in { padding-inline: 48px; }
-  .rings { width: 150px; margin-top: 14px; }
+  .rings { width: 92px; margin-top: 16px; }
+  .eyebrow-wrap { top: 84px; }
   .verse { max-width: 34ch; }
   .verse-text { font-size: 1.32rem; }
   .count { max-width: 560px; gap: 10px; margin-top: 24px; }

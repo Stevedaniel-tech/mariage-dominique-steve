@@ -86,8 +86,7 @@
 
   <!-- ===== 1. Accueil : page coupée en deux ===== -->
   <section class="hero" id="accueil">
-    <!-- Photo de fond (moitié basse / droite). Pour en changer, modifiez le nom du fichier ci-dessous. -->
-    <img class="hero-bg" src="photos/gallery-1.jpg" width="900" height="1125" alt="" aria-hidden="true" decoding="async" onerror="this.style.display='none'">
+    <div class="eyebrow-wrap"><p class="eyebrow reveal" data-i18n="kind">Mariage coutumier</p></div>
     <div class="hero-split">
 
       <!-- Moitié 1 : photo bien visible, prénoms et alliances -->
@@ -95,41 +94,20 @@
         <img class="pane-img" src="photos/hero.jpg" width="1200" height="1600" alt="Dominique et Steve" data-i18n-attr="alt:hero_alt" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
         <div class="pane-shade" aria-hidden="true"></div>
         <div class="pane-in">
-          <p class="eyebrow reveal" data-i18n="kind">Mariage coutumier</p>
           <div class="hero-spacer"></div>
           <h1 class="names reveal" style="--d:.15s" aria-label="Dominique et Steve">
             <span class="name">Dominique</span>
             <span class="amp">&amp;</span>
             <span class="name">Steve</span>
           </h1>
-          <svg class="rings reveal" style="--d:.3s" viewBox="10 2 90 76" role="img" aria-label="Deux alliances en or, dont une ornée d’un diamant" data-i18n-attr="aria-label:rings_label">
-            <defs>
-              <linearGradient id="goldG" gradientUnits="userSpaceOnUse" x1="14" y1="30" x2="96" y2="76">
-                <stop offset="0" stop-color="#fbe49a"/>
-                <stop offset=".42" stop-color="#e3ad28"/>
-                <stop offset=".72" stop-color="#f7d56b"/>
-                <stop offset="1" stop-color="#a87510"/>
-              </linearGradient>
-              <linearGradient id="gemG" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#ffffff"/>
-                <stop offset=".55" stop-color="#d4ecf8"/>
-                <stop offset="1" stop-color="#8ec2e0"/>
-              </linearGradient>
-              <clipPath id="ringBottom"><rect x="48" y="54" width="14" height="24"/></clipPath>
-            </defs>
-            <circle cx="68" cy="52" r="21" fill="none" stroke="url(#goldG)" stroke-width="5.5"/>
-            <circle cx="42" cy="52" r="21" fill="none" stroke="url(#goldG)" stroke-width="5.5"/>
-            <circle cx="68" cy="52" r="21" fill="none" stroke="url(#goldG)" stroke-width="5.5" clip-path="url(#ringBottom)"/>
-            <polygon points="62,8 74,8 81,16 55,16" fill="url(#gemG)" stroke="#a87510" stroke-width=".8" stroke-linejoin="round"/>
-            <polygon points="55,16 81,16 68,31" fill="#a9d3ea" stroke="#a87510" stroke-width=".8" stroke-linejoin="round"/>
-            <path d="M62 8 65 16M74 8 71 16M65 16 68 31M71 16 68 31" fill="none" stroke="#ffffff" stroke-opacity=".75" stroke-width=".6"/>
-            <path class="gem-glint" d="M66 11.500l.9 2.100 2.100.9-2.100.9-.9 2.100-.9-2.100-2.100-.9 2.100-.9z" fill="#ffffff"/>
-          </svg>
+          <img class="rings reveal" style="--d:.3s" src="photos/alliances.webp" width="620" height="486" alt="" aria-hidden="true" decoding="async">
         </div>
       </div>
 
       <!-- Moitié 2 : verset, date, lieu et compte à rebours sur la photo de fond -->
       <div class="pane pane-info">
+        <!-- Photo de fond, centrée sur cette moitié. Pour en changer, modifiez le nom du fichier. -->
+        <img class="hero-bg" src="photos/gallery-1.jpg" width="1000" height="1500" alt="" aria-hidden="true" decoding="async" onerror="this.style.display='none'">
         <div class="pane-in">
           <blockquote class="verse reveal" style="--d:.1s">
             <p class="verse-text" data-i18n="verse">« C’est pourquoi l’homme quittera son père et sa mère, et s’attachera à sa femme, et ils deviendront une seule chair. »</p>
@@ -137,7 +115,7 @@
           </blockquote>
           <div class="when reveal" style="--d:.25s">
             <p class="when-date" id="heroDate">Samedi 15 mai 2027</p>
-            <p class="when-place">Paris FACTORY 58 · Bobigny</p>
+            <p class="when-place"><strong>Paris FACTORY 58</strong><br>12 rue de Gutenberg, 93000 Bobigny</p>
           </div>
           <div class="count reveal" style="--d:.4s" id="countdown" role="timer" aria-label="Compte à rebours jusqu’au mariage" data-i18n-attr="aria-label:cd_label">
             <div><b id="cdMo">00</b><span data-i18n="cd_mo">Mois</span></div>
