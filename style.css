@@ -1177,3 +1177,27 @@ address { font-style: normal; margin: 8px 0 22px; font-size: 1.08rem; }
 .rthanks-title { font-family: var(--f-script); font-size: 2.8rem; color: var(--terracotta); line-height: 1.1; margin-bottom: 8px; }
 .rsvp-closed { margin-top: 24px; font-family: var(--f-title); font-style: italic; font-size: 1.15rem; }
 @media (min-width: 800px) { .rform { padding: 32px 36px 34px; } }
+
+/* ---------- Bouton musique ---------- */
+.music {
+  position: fixed; z-index: 55;
+  right: max(14px, env(safe-area-inset-right, 0px));
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  width: 48px; height: 48px; padding: 0; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid rgba(241, 210, 122, 0.7);
+  background: rgba(42, 23, 14, 0.82); color: var(--gold-soft);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  opacity: 0; pointer-events: none; transition: opacity 1s ease, transform 0.4s var(--ease);
+}
+body.is-open .music { opacity: 1; pointer-events: auto; }
+.music:hover { transform: scale(1.06); }
+.music .m-off { display: none; }
+.music[aria-pressed="false"] .m-on { display: none; }
+.music[aria-pressed="false"] .m-off { display: inline; }
+.music[aria-pressed="true"]::after {
+  content: ""; position: absolute; inset: -1px; border-radius: 50%;
+  border: 2px solid rgba(241, 210, 122, 0.55); animation: seal-ring 2.8s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) { .music[aria-pressed="true"]::after { animation: none; opacity: 0; } }

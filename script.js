@@ -17,7 +17,10 @@
     // Date limite de réponse : 2 mois avant le mariage (fin de journée, heure de Paris).
     rsvpDeadline: "2027-03-15T23:59:00+01:00",
     // Votre hashtag.
-    hashtag: "#DominiqueEtSteve2027"
+    hashtag: "#DominiqueEtSteve2027",
+    // Musique de fond (fichier MP3 à déposer dans le dossier photos). Sans ce fichier, le bouton musique reste caché.
+    musicFile: "photos/musique.mp3",
+    musicVolume: 0.35
   };
 
   /* ---------- 2) TEXTES ---------- */
@@ -25,7 +28,7 @@
 
   var I18N = {
     fr: {
-      lang_label: "Langue", intro_label: "Invitation de mariage",
+      music_label: "Couper ou activer la musique", lang_label: "Langue", intro_label: "Invitation de mariage",
       nav_story: "Histoire", nav_gallery: "Galerie", nav_prog: "Programme", nav_venue: "Lieu", nav_dress: "Tenue", nav_rsvp_long: "Confirmer votre présence",
       kind: "Mariage coutumier",
       invited: "Vous êtes invités à notre mariage",
@@ -82,7 +85,7 @@
       f_msg: "Un petit mot pour les mariés (facultatif)",
       f_send: "Envoyer ma réponse",
       f_sending: "Envoi en cours…",
-      f_err: "Désolé, l’envoi a échoué. Merci de réessayer dans un instant.",
+      f_unknown: "Nom non reconnu. Écrivez votre nom tel qu’il figure sur votre invitation, ou contactez les mariés.", f_err: "Désolé, l’envoi a échoué. Merci de réessayer dans un instant.",
       f_ok_title: "Merci !",
       f_ok_yes: "Votre présence est bien enregistrée. Nous avons hâte de célébrer avec vous le 15 mai 2027.",
       f_ok_no: "Votre réponse est bien enregistrée. Vous nous manquerez, merci de nous avoir prévenus.",
@@ -94,7 +97,7 @@
       foot_thanks: "Merci de faire partie de notre histoire"
     },
     en: {
-      lang_label: "Language", intro_label: "Wedding invitation",
+      music_label: "Mute or unmute the music", lang_label: "Language", intro_label: "Wedding invitation",
       nav_story: "Story", nav_gallery: "Gallery", nav_prog: "Programme", nav_venue: "Venue", nav_dress: "Attire", nav_rsvp_long: "Confirm your attendance",
       kind: "Traditional wedding",
       invited: "You are invited to our wedding",
@@ -151,7 +154,7 @@
       f_msg: "A little word for the couple (optional)",
       f_send: "Send my reply",
       f_sending: "Sending…",
-      f_err: "Sorry, sending failed. Please try again in a moment.",
+      f_unknown: "Name not recognised. Please write your name as it appears on your invitation, or contact the couple.", f_err: "Sorry, sending failed. Please try again in a moment.",
       f_ok_title: "Thank you!",
       f_ok_yes: "Your attendance is recorded. We can’t wait to celebrate with you on 15 May 2027.",
       f_ok_no: "Your reply is recorded. You will be missed, thank you for letting us know.",
@@ -163,7 +166,7 @@
       foot_thanks: "Thank you for being part of our story"
     },
     de: {
-      lang_label: "Sprache", intro_label: "Hochzeitseinladung",
+      music_label: "Musik aus- oder einschalten", lang_label: "Sprache", intro_label: "Hochzeitseinladung",
       nav_story: "Geschichte", nav_gallery: "Galerie", nav_prog: "Ablauf", nav_venue: "Ort", nav_dress: "Kleidung", nav_rsvp_long: "Zusage senden",
       kind: "Traditionelle Hochzeit",
       invited: "Ihr seid zu unserer Hochzeit eingeladen",
@@ -220,7 +223,7 @@
       f_msg: "Ein paar Worte an das Brautpaar (optional)",
       f_send: "Antwort senden",
       f_sending: "Wird gesendet…",
-      f_err: "Leider ist das Senden fehlgeschlagen. Bitte versucht es gleich noch einmal.",
+      f_unknown: "Name nicht erkannt. Bitte schreibt euren Namen so, wie er auf der Einladung steht, oder kontaktiert das Brautpaar.", f_err: "Leider ist das Senden fehlgeschlagen. Bitte versucht es gleich noch einmal.",
       f_ok_title: "Danke!",
       f_ok_yes: "Eure Zusage ist registriert. Wir freuen uns darauf, am 15. Mai 2027 mit euch zu feiern.",
       f_ok_no: "Eure Antwort ist registriert. Ihr werdet uns fehlen – danke für die Nachricht.",
@@ -367,13 +370,14 @@
           }).then(function (r) { return r.json(); });
 
       req.then(function (r) {
+        if (r && r.error === "unknown") { var e = new Error("unknown"); e.unknown = true; throw e; }
         if (!r || !r.success) throw new Error("send");
         form.hidden = true;
         $("#rThanksText").textContent = (yes ? d.f_ok_yes : d.f_ok_no) + (testMode ? " " + d.f_test_done : "");
         thanks.hidden = false;
         thanks.scrollIntoView({ behavior: "smooth", block: "center" });
-      }).catch(function () {
-        status.textContent = (I18N[lang] || I18N.fr).f_err; status.className = "rstatus is-err";
+      }).catch(function (err) {
+        status.textContent = (I18N[lang] || I18N.fr)[err && err.unknown ? "f_unknown" : "f_err"]; status.className = "rstatus is-err";
         send.disabled = false;
       });
     });
@@ -516,6 +520,53 @@
     targets.forEach(function (el) { io.observe(el); });
   }
 
+  /* ---- Musique : démarre à l'ouverture de l'enveloppe, bouton pour couper ---- */
+  var music = (function () {
+    var btn = $("#music"), audio = null, wanted = true, started = false, fadeT = null;
+    try { if (localStorage.getItem("dsMusic") === "off") wanted = false; } catch (e) {}
+    function show() { btn.hidden = false; btn.setAttribute("aria-pressed", String(wanted)); }
+    function fade(to, done) {
+      clearInterval(fadeT);
+      fadeT = setInterval(function () {
+        var v = audio.volume, step = 0.03;
+        if (Math.abs(v - to) <= step) { audio.volume = to; clearInterval(fadeT); if (done) done(); }
+        else audio.volume = Math.max(0, Math.min(1, v + (v < to ? step : -step)));
+      }, 60);
+    }
+    function play() {
+      if (!audio || !wanted) return;
+      audio.volume = 0;
+      var p = audio.play();
+      if (p && p.then) p.then(function () { fade(CONFIG.musicVolume); }).catch(function () {});
+    }
+    function pause() { if (audio) { clearInterval(fadeT); audio.pause(); } }
+    function setWanted(on) {
+      wanted = on; btn.setAttribute("aria-pressed", String(on));
+      try { localStorage.setItem("dsMusic", on ? "on" : "off"); } catch (e) {}
+      if (on) play(); else pause();
+    }
+    btn.addEventListener("click", function () { setWanted(!wanted); });
+    document.addEventListener("visibilitychange", function () { if (document.hidden) pause(); else if (started) play(); });
+    // Pendant la vidéo de la demande, la musique se met en pause
+    $$("video").forEach(function (v) {
+      v.addEventListener("play", pause);
+      v.addEventListener("pause", function () { if (started) play(); });
+      v.addEventListener("ended", function () { if (started) play(); });
+    });
+    return {
+      start: function () {   // appelé directement par le clic sur « Ouvrir » (obligatoire pour que le son démarre)
+        if (started || reduce || !CONFIG.musicFile) return;
+        started = true;
+        audio = new Audio(CONFIG.musicFile);
+        audio.loop = true; audio.preload = "auto"; audio.volume = 0;
+        audio.addEventListener("error", function () { btn.hidden = true; started = false; });
+        audio.addEventListener("loadedmetadata", show);
+        audio.addEventListener("canplay", show);
+        play();
+      }
+    };
+  })();
+
   /* ---- Ouverture de l'enveloppe ---- */
   var intro = $("#intro"), site = $("#site"), opened = false;
   root.classList.add("locked");
@@ -524,6 +575,7 @@
   function openInvite() {
     if (opened) return;
     opened = true;
+    music.start();
     intro.classList.add("opening");
     setTimeout(function () {
       intro.classList.add("leaving");
