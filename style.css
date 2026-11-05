@@ -667,7 +667,7 @@ body:not(.is-open) .brand, body:not(.is-open) .nav, body:not(.is-open) .rsvp-btn
 @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 
 /* ---------- 2. Notre histoire (jaune) ---------- */
-.story { background: var(--pat-light), var(--yellow); color: var(--brown); }
+.story { background: var(--pat-light), var(--ivory); color: var(--brown); }
 .story .kicker { color: var(--forest); }
 .tl { position: relative; isolation: isolate; margin-top: 48px; }
 /* Le trait n'existe qu'à mesure qu'on défile : sa hauteur est pilotée par le défilement */
@@ -1010,7 +1010,7 @@ address { font-style: normal; margin: 8px 0 22px; font-size: 1.08rem; }
 }
 
 /* ---------- 7. Confirmer votre présence (jaune) ---------- */
-.rsvp { background: var(--pat-light), var(--yellow); color: var(--brown); text-align: center; }
+.rsvp { background: var(--pat-light), var(--ivory); color: var(--brown); text-align: center; }
 .rsvp .kicker { color: var(--forest); }
 .rsvp-in { display: flex; flex-direction: column; align-items: center; }
 .rsvp .h2 { max-width: 14ch; }
@@ -1201,3 +1201,13 @@ body.is-open .music { opacity: 1; pointer-events: auto; }
   border: 2px solid rgba(241, 210, 122, 0.55); animation: seal-ring 2.8s ease-out infinite;
 }
 @media (prefers-reduced-motion: reduce) { .music[aria-pressed="true"]::after { animation: none; opacity: 0; } }
+
+/* Fond ivoire (pages Histoire et Confirmation) : cartes un peu plus claires pour rester bien lisibles */
+.story .memory, .rform, .rthanks { background: #fffbec; }
+.story .memory { box-shadow: 0 16px 34px rgba(42, 23, 14, 0.24), 0 0 0 1px rgba(42, 23, 14, 0.08); }
+.rform, .rthanks { box-shadow: 0 16px 36px rgba(42, 23, 14, 0.22), inset 0 0 0 5px #fffbec, inset 0 0 0 6px rgba(217, 165, 33, 0.7), 0 0 0 1px rgba(42, 23, 14, 0.12); }
+
+/* Tenue : titre et texte seulement, centrés */
+.dress-in { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.dress .h2 { max-width: 16ch; }
+.dress .lead { max-width: 40ch; }
